@@ -1,0 +1,61 @@
+package com.example.instagram01.adapters
+
+import android.graphics.Color
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
+import com.example.instagram01.R
+import com.example.instagram01.interfaceFun.RvInterface
+import com.example.instagram01.model.User
+
+class CustomeRvAdapter_addFriend_profile( val list: List<User>, val onClickFollow: RvInterface):RecyclerView.Adapter<CustomeRvAdapter_addFriend_profile.UserViewHolder>(){
+    inner class UserViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_witget_friend_profile, parent, false)
+        return UserViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
+        holder.itemView.apply {
+            val avt = this.findViewById<ImageView>(R.id.img_avt_friend)
+            val userName = this.findViewById<TextView>(R.id.txt_user_name)
+            val btn_follow = this.findViewById<Button>(R.id.btn_follow)
+            avt.setImageResource(list[position].Avt)
+            userName.setText("${list[position].UserName}")
+
+            var colorBtn: Int = 0
+            var colorText: Int = 0
+            btn_follow.setOnClickListener {
+                onClickFollow.OnClickFollow(position)
+                if(btn_follow.text.equals("Theo dõi")){
+                    btn_follow.setText("Đang theo dõi")
+                    colorBtn = ContextCompat.getColor(context, R.color.greyish)
+                    colorText = ContextCompat.getColor(context, R.color.black)
+                    btn_follow.setBackgroundColor(colorBtn)
+                    btn_follow.setTextColor(colorText)
+                }else{
+                    btn_follow.setText("Theo dõi")
+                    colorBtn = ContextCompat.getColor(context, R.color.blue)
+                    colorText = ContextCompat.getColor(context, R.color.white)
+                    btn_follow.setBackgroundColor(colorBtn)
+                    btn_follow.setTextColor(colorText)
+                }
+            }
+            holder.itemView.setOnClickListener{
+
+            }
+
+        }
+    }
+
+    override fun getItemCount(): Int {
+        return list.size
+    }
+
+}
