@@ -24,17 +24,6 @@ class EditProfile_Activity : AppCompatActivity() {
         toolbar.setNavigationOnClickListener {
             finish()
         }
-
-
-        val btn = findViewById<Button>(R.id.btn_test)
-        btn.setOnClickListener {
-            Toast.makeText(this, "hhehee", Toast.LENGTH_SHORT).show()
-
-        }
-
-
-
-
     }
 
 }

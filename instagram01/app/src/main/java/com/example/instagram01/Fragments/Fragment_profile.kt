@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.GridView
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -39,6 +41,12 @@ class Fragment_profile : Fragment() {
     private var listImages: ArrayList<ImageStaus> = ArrayList()
     private var listUser: ArrayList<User> = ArrayList()
 
+    private lateinit var rv_otherUser:RecyclerView
+    private lateinit var gv_listStatus:GridView
+    private lateinit var btn_editProfile:Button
+    private lateinit var img_showOtherUser:ImageView
+    private lateinit var ll0status:LinearLayout
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -52,28 +60,55 @@ class Fragment_profile : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        var view: View = inflater.inflate(R.layout.fragment_profile, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_profile, container, false)
+
+        btn_editProfile = view.findViewById<Button>(R.id.btn_edit_Profile_User)
+        img_showOtherUser = view.findViewById<ImageView>(R.id.img_showOtherUser)
+        rv_otherUser = view.findViewById(R.id.rv_otherUser)
+        gv_listStatus = view.findViewById(R.id.gv_listStatus)
+        ll0status = view.findViewById(R.id.linearLayout_0status)
 
 
         dataArray()
         setDataGridView_status(view)
         setDataRecyclerView_friend(view, listUser)
         addEvent(view)
+        if (listStatus.size > 0){
+            ll0status.visibility = View.GONE
+            gv_listStatus.visibility = View.VISIBLE
+        }else{
+            ll0status.visibility = View.VISIBLE
+            gv_listStatus.visibility = View.GONE
+        }
+
         return view
     }
 
     private fun addEvent(view: View) {
-        var btn_editProfile = view.findViewById<Button>(R.id.btn_edit_Profile_User)
+
         btn_editProfile.setOnClickListener {
             var i = Intent(activity, EditProfile_Activity::class.java)
             startActivity(i)
         }
+
+        img_showOtherUser.setOnClickListener {
+            if ( rv_otherUser.visibility == View.VISIBLE ){
+                img_showOtherUser.setImageResource(R.drawable.add_friend1)
+                rv_otherUser.visibility = View.GONE
+            }else{
+                img_showOtherUser.setImageResource(R.drawable.add_friend2)
+                rv_otherUser.visibility = View.VISIBLE
+            }
+        }
+
+
+
     }
 
 
     private fun setDataGridView_status(view: View){
         var adt = activity?.let { CustomeRvAdapter_status_profile(it, listStatus, listImages) }
-        var gv_listStatus = view.findViewById<GridView>(R.id.gv_listStatus)
+        gv_listStatus = view.findViewById<GridView>(R.id.gv_listStatus)
         gv_listStatus.adapter = adt
     }
     private fun setDataRecyclerView_friend(view: View, array: ArrayList<User> ){
@@ -83,7 +118,6 @@ class Fragment_profile : Fragment() {
             }
 
         })
-        val rv_otherUser = view.findViewById<RecyclerView>(R.id.rv_otherUser)
         rv_otherUser.adapter = adt
         rv_otherUser.layoutManager = LinearLayoutManager(
             activity,
