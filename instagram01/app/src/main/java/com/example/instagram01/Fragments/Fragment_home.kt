@@ -6,12 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.ListView
-import androidx.recyclerview.widget.RecyclerView
-import com.example.instagram01.MainActivity2
+import android.widget.Toolbar
 import com.example.instagram01.R
+import android.widget.Toast
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,11 +40,7 @@ class Fragment_home : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         val view : View = inflater.inflate(R.layout.fragment_home, container, false)
-        val btn = view.findViewById<Button>(R.id.btn_ma2)
-        btn.setOnClickListener { it ->
-            val i = Intent(activity, MainActivity2::class.java)
-            startActivity(i)
-        }
+
 
         return view
     }

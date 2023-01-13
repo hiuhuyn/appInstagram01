@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_margin="10dp"
-    android:background="@color/white"
+    android:background="@drawable/border_black_1dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageView
         android:id="@+id/img_close"
@@ -49,7 +49,7 @@
         android:layout_height="30dp"
         android:layout_gravity="center"
         android:layout_marginBottom="10dp"
-        app:cardCornerRadius="20dp">
+        app:cardCornerRadius="12dp">
 
         <Button
             android:id="@+id/btn_follow"

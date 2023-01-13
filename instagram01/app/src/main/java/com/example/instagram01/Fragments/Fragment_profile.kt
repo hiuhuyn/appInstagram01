@@ -1,14 +1,17 @@
 package com.example.instagram01.Fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.GridView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.instagram01.EditProfile_Activity
 import com.example.instagram01.R
 import com.example.instagram01.adapters.CustomeRvAdapter_addFriend_profile
 import com.example.instagram01.adapters.CustomeRvAdapter_status_profile
@@ -55,9 +58,16 @@ class Fragment_profile : Fragment() {
         dataArray()
         setDataGridView_status(view)
         setDataRecyclerView_friend(view, listUser)
-
-
+        addEvent(view)
         return view
+    }
+
+    private fun addEvent(view: View) {
+        var btn_editProfile = view.findViewById<Button>(R.id.btn_edit_Profile_User)
+        btn_editProfile.setOnClickListener {
+            var i = Intent(activity, EditProfile_Activity::class.java)
+            startActivity(i)
+        }
     }
 
 
