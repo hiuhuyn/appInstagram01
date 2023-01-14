@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
     <FrameLayout
         android:id="@+id/frame_layout_page"
@@ -23,6 +23,6 @@
         android:layout_alignParentBottom="true"
         android:background="@color/white"
         app:itemBackground="@color/white"
-        app:itemIconTint="@color/color_item_selector"
+        app:itemIconTint="@color/color_select"
         app:menu="@menu/menu_nav_bottom" />
 </RelativeLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditProfile_Activity"
+    tools:context=".activity.EditProfile_Activity"
     tools:ignore="SpeakableTextPresentCheck"
     android:background="@color/white">
 

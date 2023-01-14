@@ -68,6 +68,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/linearLayout_followers"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -91,6 +92,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/linearLayout_followed"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -133,26 +135,32 @@
                 android:textColor="@color/black"
                 android:textSize="15dp" />
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/relativeLayout_btnEditProfile_showOtherUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:gravity="center">
 
                 <Button
                     android:id="@+id/btn_edit_Profile_User"
-                    android:layout_width="340dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="50dp"
-                    android:text="Chỉnh sửa trang cá nhân"
+                    android:layout_alignParentStart="true"
                     android:layout_gravity="center"
-                    android:layout_margin="0dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_toStartOf="@+id/cv_1"
+                    android:text="Chỉnh sửa trang cá nhân"
                     android:textSize="15dp" />
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_1"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_margin="5dp"
                     android:backgroundTint="@color/greyish"
+                    android:layout_alignParentEnd="true"
                     app:cardCornerRadius="10dp">
                     <ImageView
                         android:id="@+id/img_showOtherUser"
@@ -160,24 +168,138 @@
                         android:layout_height="25dp"
                         android:layout_gravity="center"
                         android:src="@drawable/add_friend2"
-                        tools:ignore="SpeakableTextPresentCheck" />
-
-
+                        tools:ignore="SpeakableTextPresentCheck"/>
                 </androidx.cardview.widget.CardView>
 
-            </LinearLayout>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_otherUser"
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/liearLayout_ohterUser_profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="visible"/>
+                android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Khám phá mọi người"
+                        android:layout_alignParentStart="true"
+                        android:textSize="17dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        />
+                    <TextView
+                        android:id="@+id/txt_showAllOtherUser_profile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Xem tất cả"
+                        android:layout_alignParentEnd="true"
+                        android:textSize="17dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/blue"
+                        />
+
+
+                </RelativeLayout>
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:background="@color/white">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_otherUser"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:visibility="visible"
+                            android:background="@color/white"/>
+                        <LinearLayout
+                            android:layout_width="150dp"
+                            android:layout_height="215dp"
+                            android:orientation="vertical"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/border_black_1dp">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                app:cardCornerRadius="50dp"
+                                android:layout_gravity="center|top"
+                                android:layout_marginTop="13dp"
+                                android:background="@color/white">
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/avt_test"
+                                    />
+                            </androidx.cardview.widget.CardView>
+
+                            <TextView
+
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:text="Tìm thêm người để theo dõi"
+                                android:layout_gravity="center"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:textSize="15dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginHorizontal="15dp"
+                                android:gravity="center_horizontal"
+                                android:maxLines="2"
+                                />
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="125dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginBottom="10dp"
+                                app:cardCornerRadius="12dp">
+
+                                <Button
+                                    android:id="@+id/btn_showAllOtherUser_pofile"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/greyish"
+                                    android:text="Xem tất cả"
+                                    android:textColor="@color/black"
+                                    android:textSize="13dp"
+                                    android:textStyle="bold"
+                                    android:gravity="center"
+                                    tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+
+                            </androidx.cardview.widget.CardView>
+
+
+
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+
+
+                </HorizontalScrollView>
+
+            </LinearLayout>
+
+
+
 
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_margin="10dp"
-                android:src="@drawable/ic_gird"/>
+                android:src="@drawable/ic_gird"
+                />
 
             <LinearLayout
                 android:id="@+id/linearLayout_0status"

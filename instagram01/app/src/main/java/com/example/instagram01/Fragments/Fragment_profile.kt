@@ -10,14 +10,18 @@ import android.widget.Button
 import android.widget.GridView
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.instagram01.EditProfile_Activity
+import com.example.instagram01.activity.EditProfile_Activity
 import com.example.instagram01.R
+import com.example.instagram01.activity.Activity_showAllFollow
 import com.example.instagram01.adapters.CustomeRvAdapter_addFriend_profile
 import com.example.instagram01.adapters.CustomeRvAdapter_status_profile
-import com.example.instagram01.interfaceFun.RvInterface
+import com.example.instagram01.interfaceFun.Interface_sendData
+import com.example.instagram01.interfaceFun.RvInterface_otherUser_profile
 import com.example.instagram01.model.ImageStaus
 import com.example.instagram01.model.Status
 import com.example.instagram01.model.User
@@ -33,7 +37,12 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class Fragment_profile : Fragment() {
+
     // TODO: Rename and change types of parameters
+
+
+
+
     private var param1: String? = null
     private var param2: String? = null
 
@@ -42,10 +51,17 @@ class Fragment_profile : Fragment() {
     private var listUser: ArrayList<User> = ArrayList()
 
     private lateinit var rv_otherUser:RecyclerView
+
     private lateinit var gv_listStatus:GridView
     private lateinit var btn_editProfile:Button
     private lateinit var img_showOtherUser:ImageView
     private lateinit var ll0status:LinearLayout
+    private lateinit var liearLayout_ohterUser_profile: LinearLayout
+    private lateinit var btn_showAllOtherUser: Button
+    private lateinit var txt_showAllOtherUser: TextView
+    private lateinit var linearLayout_followers: LinearLayout
+    private lateinit var linearLayout_followed: LinearLayout
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,6 +84,14 @@ class Fragment_profile : Fragment() {
         gv_listStatus = view.findViewById(R.id.gv_listStatus)
         ll0status = view.findViewById(R.id.linearLayout_0status)
 
+        btn_showAllOtherUser = view.findViewById(R.id.btn_showAllOtherUser_pofile)
+        txt_showAllOtherUser = view.findViewById(R.id.txt_showAllOtherUser_profile)
+
+        liearLayout_ohterUser_profile = view.findViewById(R.id.liearLayout_ohterUser_profile)
+        linearLayout_followers  = view.findViewById( R.id.linearLayout_followers)
+        linearLayout_followed  = view.findViewById( R.id.linearLayout_followed)
+
+
 
         dataArray()
         setDataGridView_status(view)
@@ -80,7 +104,6 @@ class Fragment_profile : Fragment() {
             ll0status.visibility = View.VISIBLE
             gv_listStatus.visibility = View.GONE
         }
-
         return view
     }
 
@@ -92,14 +115,25 @@ class Fragment_profile : Fragment() {
         }
 
         img_showOtherUser.setOnClickListener {
-            if ( rv_otherUser.visibility == View.VISIBLE ){
+            if ( liearLayout_ohterUser_profile.visibility == View.VISIBLE ){
                 img_showOtherUser.setImageResource(R.drawable.add_friend1)
-                rv_otherUser.visibility = View.GONE
+                liearLayout_ohterUser_profile.visibility = View.GONE
             }else{
                 img_showOtherUser.setImageResource(R.drawable.add_friend2)
-                rv_otherUser.visibility = View.VISIBLE
+                liearLayout_ohterUser_profile.visibility = View.VISIBLE
             }
         }
+        linearLayout_followers.setOnClickListener {
+            var i = Intent(activity, Activity_showAllFollow::class.java)
+            i.putExtra("i", 1)
+            startActivity(i)
+        }
+        linearLayout_followed.setOnClickListener {
+            var i = Intent(activity, Activity_showAllFollow::class.java)
+            i.putExtra("i", 2)
+            startActivity(i)
+        }
+
 
 
 
@@ -112,11 +146,18 @@ class Fragment_profile : Fragment() {
         gv_listStatus.adapter = adt
     }
     private fun setDataRecyclerView_friend(view: View, array: ArrayList<User> ){
-        val adt = CustomeRvAdapter_addFriend_profile(array, object : RvInterface{
-            override fun OnClickFollow(pos: Int) {
-                Toast.makeText(activity,"hehehe", Toast.LENGTH_SHORT).show()
+        var check: Boolean = false
+        var array2: ArrayList<User> = array
+
+        val adt= CustomeRvAdapter_addFriend_profile(array2, object : RvInterface_otherUser_profile{
+            override fun OnClickFollow(pos: Int, bool: Boolean) {
+                Toast.makeText(activity, "Nhấn follow", Toast.LENGTH_SHORT).show()
             }
 
+            override fun OnClickClose(pos: Int) {
+                Toast.makeText(activity, "Nhấn close", Toast.LENGTH_SHORT).show()
+                check = true
+            }
         })
         rv_otherUser.adapter = adt
         rv_otherUser.layoutManager = LinearLayoutManager(
@@ -148,25 +189,5 @@ class Fragment_profile : Fragment() {
         listUser.add((User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "rrrrr", "des", R.drawable.avt_test )))
         listUser.add((User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "jjjjj", "des", R.drawable.profile_icon )))
 
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Fragment_profile.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Fragment_profile().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }

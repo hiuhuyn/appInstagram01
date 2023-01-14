@@ -1,12 +1,10 @@
-package com.example.instagram01
+package com.example.instagram01.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
+import com.example.instagram01.R
 
 class EditProfile_Activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
