@@ -14,14 +14,16 @@ import com.example.instagram01.model.User
 
 class CustomeRvAdapter_addFriend_profile(var list: ArrayList<User>, val rvInterface: RvInterface_otherUser_profile):RecyclerView.Adapter<CustomeRvAdapter_addFriend_profile.UserViewHolder>(){
     inner class UserViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
+    private lateinit var avt: ImageView
+    private lateinit var userName: TextView
+    private lateinit var btn_follow: Button
+    private lateinit var img_close: ImageView
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_witget_friend_profile, parent, false)
         return UserViewHolder(view)
     }
     private var array: ArrayList<User> = list
-    public var Array: ArrayList<User>
-        get() { return array}
-        set(value) {array = value}
 
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {

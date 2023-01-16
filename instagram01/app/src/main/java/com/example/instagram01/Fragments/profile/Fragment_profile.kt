@@ -1,4 +1,4 @@
-package com.example.instagram01.Fragments
+package com.example.instagram01.Fragments.profile
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,15 +12,14 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.instagram01.Fragments.profile.child_profile.Fragment_showAllOtherUser
 import com.example.instagram01.activity.EditProfile_Activity
 import com.example.instagram01.R
-import com.example.instagram01.activity.Activity_showAllFollow
+import com.example.instagram01.activity.MainActivity
 import com.example.instagram01.adapters.CustomeRvAdapter_addFriend_profile
 import com.example.instagram01.adapters.CustomeRvAdapter_status_profile
-import com.example.instagram01.interfaceFun.Interface_sendData
 import com.example.instagram01.interfaceFun.RvInterface_otherUser_profile
 import com.example.instagram01.model.ImageStaus
 import com.example.instagram01.model.Status
@@ -38,13 +37,10 @@ private const val ARG_PARAM2 = "param2"
  */
 class Fragment_profile : Fragment() {
 
-    // TODO: Rename and change types of parameters
-
-
-
-
     private var param1: String? = null
     private var param2: String? = null
+
+    private lateinit var mainActivity: MainActivity
 
     private var listStatus:ArrayList<Status> = ArrayList()
     private var listImages: ArrayList<ImageStaus> = ArrayList()
@@ -78,6 +74,8 @@ class Fragment_profile : Fragment() {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_profile, container, false)
 
+        mainActivity = activity as MainActivity
+
         btn_editProfile = view.findViewById<Button>(R.id.btn_edit_Profile_User)
         img_showOtherUser = view.findViewById<ImageView>(R.id.img_showOtherUser)
         rv_otherUser = view.findViewById(R.id.rv_otherUser)
@@ -94,8 +92,7 @@ class Fragment_profile : Fragment() {
 
 
         dataArray()
-        setDataGridView_status(view)
-        setDataRecyclerView_friend(view, listUser)
+        setAdapters(view, listUser)
         addEvent(view)
         if (listStatus.size > 0){
             ll0status.visibility = View.GONE
@@ -124,14 +121,10 @@ class Fragment_profile : Fragment() {
             }
         }
         linearLayout_followers.setOnClickListener {
-            var i = Intent(activity, Activity_showAllFollow::class.java)
-            i.putExtra("i", 1)
-            startActivity(i)
+            mainActivity.goToFragment(Fragment_showAllOtherUser(), "showOtherUser", 0)
         }
         linearLayout_followed.setOnClickListener {
-            var i = Intent(activity, Activity_showAllFollow::class.java)
-            i.putExtra("i", 2)
-            startActivity(i)
+            mainActivity.goToFragment(Fragment_showAllOtherUser(), "showOtherUser", 1)
         }
 
 
@@ -140,12 +133,10 @@ class Fragment_profile : Fragment() {
     }
 
 
-    private fun setDataGridView_status(view: View){
-        var adt = activity?.let { CustomeRvAdapter_status_profile(it, listStatus, listImages) }
-        gv_listStatus = view.findViewById<GridView>(R.id.gv_listStatus)
-        gv_listStatus.adapter = adt
-    }
-    private fun setDataRecyclerView_friend(view: View, array: ArrayList<User> ){
+    private fun setAdapters(view: View, array: ArrayList<User> ){
+        val customeRvAdapter_status_profile = activity?.let { CustomeRvAdapter_status_profile(it, listStatus, listImages) }
+        gv_listStatus.adapter = customeRvAdapter_status_profile
+
         var check: Boolean = false
         var array2: ArrayList<User> = array
 

@@ -1,4 +1,4 @@
-package com.example.instagram01.Fragments
+package com.example.instagram01.Fragments.home
 
 import android.content.Intent
 import android.os.Bundle

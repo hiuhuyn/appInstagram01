@@ -1,4 +1,4 @@
-package com.example.instagram01.Fragments
+package com.example.instagram01.Fragments.notification
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,10 +14,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [Fragment_search.newInstance] factory method to
+ * Use the [Fragment_notifications.newInstance] factory method to
  * create an instance of this fragment.
  */
-class Fragment_search : Fragment() {
+class Fragment_notifications : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -35,7 +35,7 @@ class Fragment_search : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false)
+        return inflater.inflate(R.layout.fragment_notifications, container, false)
     }
 
     companion object {
@@ -45,12 +45,12 @@ class Fragment_search : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment Fragment_search.
+         * @return A new instance of fragment Fragment_notifications.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            Fragment_search().apply {
+            Fragment_notifications().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
