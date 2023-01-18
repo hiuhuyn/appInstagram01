@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 
@@ -17,7 +18,7 @@ import com.example.instagram01.model.User
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
-
+    private var backPressedTime:Long = 0
     private lateinit var nav_bottom:BottomNavigationView
     lateinit var toolbar: Toolbar
 
@@ -33,6 +34,17 @@ class MainActivity : AppCompatActivity() {
         ).commit()
 
         addEvent()
+    }
+
+    override fun onBackPressed() {
+
+        if (backPressedTime + 2000 > System.currentTimeMillis()){
+            super.onBackPressed()
+        }else{
+            Toast.makeText(this, "Nhất back 2 lần để thoát", Toast.LENGTH_SHORT).show()
+        }
+        backPressedTime = System.currentTimeMillis()
+
     }
 
 
@@ -63,7 +75,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.fragment_main,
                 selectorFragment,
                 tag
-            ).addToBackStack(tag).commit()
+            ).commit()
             true
         }
     }
