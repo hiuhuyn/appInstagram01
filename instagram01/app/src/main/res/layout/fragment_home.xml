@@ -5,20 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
-    tools:context=".Fragments.Fragment_home">
-
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_home"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp"
-        android:background="@color/white"
-        app:menu="@menu/menu_appbar_home"
-        app:title="Instagram"
-
-        />
+    tools:context=".Fragments.home.Fragment_home">
 
 
 </RelativeLayout>

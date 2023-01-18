@@ -3,81 +3,103 @@ package com.example.instagram01.activity
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import android.view.MenuItem
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
+import androidx.viewpager2.widget.ViewPager2
 import com.example.instagram01.Fragments.*
 import com.example.instagram01.Fragments.home.Fragment_home
 import com.example.instagram01.Fragments.notification.Fragment_notifications
 import com.example.instagram01.Fragments.profile.Fragment_profile
 import com.example.instagram01.Fragments.search.Fragment_search
 import com.example.instagram01.R
-import com.example.instagram01.interfaceFun.Interface_sendData
+import com.example.instagram01.adapters.SettingShowFragment
+import com.example.instagram01.adapters.ViewPagerAdapter_main
+import com.example.instagram01.model.User
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var nav_bottom:BottomNavigationView
+    private lateinit var viewPager2: ViewPager2
+    lateinit var toolbar: Toolbar
 
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         nav_bottom = findViewById(R.id.nav_bottom)
+        toolbar = findViewById(R.id.toolbar)
+        viewPager2 = findViewById(R.id.viewPager2)
+        setSupportActionBar(toolbar)
+        viewPager2.adapter = ViewPagerAdapter_main(this, object : SettingShowFragment{
+            override fun isUserMain(): Boolean {
+                return true
+            }
 
+            override fun user(): User {
+                return User("Quan@1", 111, true, "29/11/22", "Minh Quân", "2911", "No desc", R.drawable.avt_test)
+            }
 
-        supportFragmentManager.beginTransaction().add(
-            R.id.frame_layout_page, Fragment_home(), "tag1"
-        )
-        supportFragmentManager.beginTransaction().addToBackStack("tag1")
-        supportFragmentManager.beginTransaction().commit()
+        })
+
 
         addEvent()
-
     }
 
+
     private fun addEvent() {
+        viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+            }
+
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                when(position){
+                    0 -> {
+                        nav_bottom.selectedItemId = R.id.nav_home
+                    }
+                    1 -> {
+                        nav_bottom.selectedItemId = R.id.nav_search
+                    }
+                    2 -> {
+                        nav_bottom.selectedItemId = R.id.nav_notifications
+                    }
+                    3 -> {
+                        nav_bottom.selectedItemId = R.id.nav_profile
+                    }
+                }
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+        })
 
 
-        nav_bottom.setOnNavigationItemSelectedListener { item ->
-            when(item.itemId){
+        nav_bottom.setOnItemSelectedListener {
+            when(it.itemId) {
                 R.id.nav_home -> {
-                    goToFragment(Fragment_home(), "nav_home")
+                    viewPager2.currentItem = 0
                 }
                 R.id.nav_search -> {
-                    goToFragment(Fragment_search(), "nav_search")
-                }
-                R.id.nav_profile -> {
-                    goToFragment(Fragment_profile(), "nav_profile")
+                    viewPager2.currentItem = 1
                 }
                 R.id.nav_notifications -> {
-                    goToFragment(Fragment_notifications(), "nav_notifications")
+                    viewPager2.currentItem = 2
+
+                }
+                R.id.nav_profile -> {
+                    viewPager2.currentItem = 3
                 }
             }
             true
         }
-    }
-    fun goToFragment(fragment: Fragment, tag: String){
-        val fragmentManager = supportFragmentManager.beginTransaction()
-        fragmentManager.replace(
-            R.id.frame_layout_page, fragment, tag
-        )
-        fragmentManager.addToBackStack(tag)
-        fragmentManager.commit()
-    }
-    fun goToFragment(fragment: Fragment, tag: String, count: Int){
-        val fragmentManager = supportFragmentManager.beginTransaction()
-        // gửi dũ liệu check
-        val bundle: Bundle = Bundle()
-        bundle.putInt("countItem", count)
-        fragment.arguments = bundle
-
-        fragmentManager.replace(
-            R.id.frame_layout_page, fragment, tag
-        )
-        fragmentManager.addToBackStack(tag)
-        fragmentManager.commit()
     }
 
 

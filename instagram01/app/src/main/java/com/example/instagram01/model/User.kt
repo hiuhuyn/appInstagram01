@@ -1,6 +1,6 @@
 package com.example.instagram01.model
 
-class User {
+class User: java.io.Serializable {
     private var email: String = ""
     private var phoneNumber: Short = 0
     private var sex: Boolean = true

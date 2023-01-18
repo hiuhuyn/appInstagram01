@@ -9,21 +9,16 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.instagram01.R
-import com.example.instagram01.interfaceFun.RvInterface_otherUser_profile
+import com.example.instagram01.interfaceFun.OnClickListent
 import com.example.instagram01.model.User
 
-class CustomeRvAdapter_addFriend_profile(var list: ArrayList<User>, val rvInterface: RvInterface_otherUser_profile):RecyclerView.Adapter<CustomeRvAdapter_addFriend_profile.UserViewHolder>(){
+class CustomeRvAdapter_addFriend_profile(val array: ArrayList<User>, val rvInterface: OnClickListent):RecyclerView.Adapter<CustomeRvAdapter_addFriend_profile.UserViewHolder>(){
     inner class UserViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
-    private lateinit var avt: ImageView
-    private lateinit var userName: TextView
-    private lateinit var btn_follow: Button
-    private lateinit var img_close: ImageView
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_witget_friend_profile, parent, false)
         return UserViewHolder(view)
     }
-    private var array: ArrayList<User> = list
 
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
@@ -32,11 +27,7 @@ class CustomeRvAdapter_addFriend_profile(var list: ArrayList<User>, val rvInterf
             val userName = this.findViewById<TextView>(R.id.txt_user_name)
             val btn_follow = this.findViewById<Button>(R.id.btn_follow)
             val img_close = this.findViewById<ImageView>(R.id.img_close)
-            img_close.setOnClickListener {
-                rvInterface.OnClickClose(position)
-                array.remove( list[position] )
-                notifyDataSetChanged()
-            }
+
             avt.setImageResource(array[position].Avt)
             userName.setText("${array[position].UserName}")
 
@@ -61,16 +52,22 @@ class CustomeRvAdapter_addFriend_profile(var list: ArrayList<User>, val rvInterf
                 }
                 rvInterface.OnClickFollow(position, bool)
             }
-            holder.itemView.setOnClickListener{
+            img_close.setOnClickListener {
+                rvInterface.OnClickClose(position)
+                array.remove( array[position] )
+                notifyDataSetChanged()
+            }
+            avt.setOnClickListener {
+                rvInterface.OnClickView(position)
             }
         }
     }
 
     override fun getItemCount(): Int {
-        if ( array.size > 10 ){
-            return 10
+        return if ( array.size > 10 ){
+            10
         }else{
-            return array.size
+            array.size
         }
     }
 }

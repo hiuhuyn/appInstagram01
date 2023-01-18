@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragments.profile.child_profile.Fragment_showAllOtherUser">
+    tools:context=".Fragments.follow.Fragment_showFollow"
+    android:background="@color/white">
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
@@ -12,20 +13,21 @@
         android:layout_alignParentTop="true"
         android:background="@color/white"
         >
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_showOtherUser"
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLLayout_follow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:navigationIcon="@drawable/ic_return"
-            app:title="Khám phá mọi người"
-            />
+            app:tabSelectedTextColor="@color/black"
+            app:tabTextColor="@color/greyish"
+            tools:ignore="SpeakableTextPresentCheck"/>
     </com.google.android.material.appbar.AppBarLayout>
-    <GridView
-        android:id="@+id/gv_showOtherUser"
-        android:layout_below="@+id/appBarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
 
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager2_follow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/appBarLayout"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 
 </RelativeLayout>

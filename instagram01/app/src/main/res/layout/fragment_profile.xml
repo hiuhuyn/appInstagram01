@@ -1,218 +1,261 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Fragments.Fragment_profile"
-    android:background="@color/white"
-    android:padding="10dp"
-    >
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_profile"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp"
-        android:background="@color/white"
-        app:menu="@menu/menu_appbar_profile"
-        app:title="gynHuyn"
-        />
+    android:orientation="vertical"
+    tools:context=".Fragments.profile.Fragment_profile"
+    android:background="@color/white">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar_profile"
-        android:layout_marginTop="0dp"
-        android:background="@color/white">
+        android:padding="10dp"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:orientation="horizontal"
-                android:weightSum="5">
-
+            android:layout_height="100dp"
+            android:orientation="horizontal">
+            <androidx.cardview.widget.CardView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                app:cardCornerRadius="50dp"
+                android:background="@color/white"
+                >
                 <ImageView
                     android:id="@+id/img_avt_profile"
-                    android:layout_width="70dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:src="@android:drawable/ic_notification_overlay" />
+                    android:src="@drawable/profile_icon" />
+            </androidx.cardview.widget.CardView>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:text="0"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:text="Bài viết"
-                        android:textSize="15dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayout_followers"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:text="0"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:text="Người theo dõi"
-                        android:textSize="15dp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayout_followed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:text="0"
-                        android:textSize="20dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:text="Đang theo dõi"
-                        android:textSize="15dp" />
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/txt_name_profile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Nguyễn Minh Quân"
-                android:textColor="@color/black"
-                android:textSize="15dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txt_note_profile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ghi chú"
-                android:textColor="@color/black"
-                android:textSize="15dp" />
-
-            <RelativeLayout
-                android:id="@+id/relativeLayout_btnEditProfile_showOtherUser"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
-
-                <Button
-                    android:id="@+id/btn_edit_Profile_User"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="0dp"
-                    android:layout_marginBottom="0dp"
-                    android:layout_toStartOf="@+id/cv_1"
-                    android:text="Chỉnh sửa trang cá nhân"
-                    android:textSize="15dp" />
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cv_1"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_margin="5dp"
-                    android:backgroundTint="@color/greyish"
-                    android:layout_alignParentEnd="true"
-                    app:cardCornerRadius="10dp">
-                    <ImageView
-                        android:id="@+id/img_showOtherUser"
-                        android:layout_width="25dp"
-                        android:layout_height="25dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/add_friend2"
-                        tools:ignore="SpeakableTextPresentCheck"/>
-                </androidx.cardview.widget.CardView>
-
-            </RelativeLayout>
 
             <LinearLayout
-                android:id="@+id/liearLayout_ohterUser_profile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="10dp"
                 android:orientation="vertical">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:gravity="center_vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Khám phá mọi người"
-                        android:layout_alignParentStart="true"
-                        android:textSize="17dp"
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        />
-                    <TextView
-                        android:id="@+id/txt_showAllOtherUser_profile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Xem tất cả"
-                        android:layout_alignParentEnd="true"
-                        android:textSize="17dp"
-                        android:textStyle="bold"
-                        android:textColor="@color/blue"
-                        />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="0"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="Bài viết"
+                    android:textSize="15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout_followers"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_marginHorizontal="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="0"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="Người theo dõi"
+                    android:textSize="15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout_followed"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="0dp"
+                android:layout_marginStart="10dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="0"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="Đang theo dõi"
+                    android:textSize="15dp" />
+            </LinearLayout>
 
 
-                </RelativeLayout>
-                <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:background="@color/white">
-                    <LinearLayout
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_name_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nguyễn Minh Quân"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txt_desc_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Ghi chú"
+            android:textColor="@color/black"
+            android:textSize="15dp" />
+
+
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:id="@+id/linearLayout_follow_messenger"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/cv_1"
+                android:gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:visibility="gone">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    app:cardCornerRadius="12dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1">
+
+                    <Button
+                        android:id="@+id/btn_follow"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal"
-                        android:gravity="center_vertical">
+                        android:background="@color/blue"
+                        android:text="Theo dõi"
+                        android:textColor="#FFFFFF"
+                        android:textSize="13dp"
+                        android:textStyle="bold"
+                        tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+                </androidx.cardview.widget.CardView>
+
+                <Button
+                    android:id="@+id/btn_messenger"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginHorizontal="5dp"
+                    android:background="@drawable/make_btn_radius_10"
+                    android:layout_weight="1"
+                    android:text="Nhắn tin"
+                    android:textColor="@color/black"
+                    android:textSize="13dp"
+                    android:textStyle="bold"
+                    tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_edit_Profile_User"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_alignParentStart="true"
+                android:layout_margin="5dp"
+                android:layout_toStartOf="@+id/cv_1"
+                android:background="@drawable/make_btn_radius_10"
+                android:text="Chỉnh sửa trang cá nhân"
+                android:textSize="15dp"
+                android:visibility="gone" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_1"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:backgroundTint="@color/greyish"
+                android:layout_alignParentEnd="true"
+                app:cardCornerRadius="10dp">
+                <ImageView
+                    android:id="@+id/img_showOtherUser"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/add_friend2"
+                    tools:ignore="SpeakableTextPresentCheck"/>
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/liearLayout_ohterUser_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Khám phá mọi người"
+                    android:layout_alignParentStart="true"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/txt_showAllOtherUser_profile"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Xem tất cả"
+                    android:layout_alignParentEnd="true"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/blue"
+                    />
+
+
+            </RelativeLayout>
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:background="@color/white">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rv_otherUser"
                             android:layout_width="wrap_content"
@@ -223,6 +266,8 @@
                             android:layout_width="150dp"
                             android:layout_height="215dp"
                             android:orientation="vertical"
+                            android:layout_alignParentEnd="true"
+                            android:layout_toEndOf="@+id/rv_otherUser"
                             android:layout_margin="10dp"
                             android:background="@drawable/border_black_1dp">
 
@@ -274,86 +319,71 @@
                                     tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
 
                             </androidx.cardview.widget.CardView>
-
-
-
-
-
                         </LinearLayout>
 
-                    </LinearLayout>
+                    </RelativeLayout>
 
 
-
-
-                </HorizontalScrollView>
-
-            </LinearLayout>
-
-
-
-
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_margin="10dp"
-                android:src="@drawable/ic_gird"
-                />
-
-            <LinearLayout
-                android:id="@+id/linearLayout_0status"
-                android:layout_width="match_parent"
-                android:layout_height="600dp"
-                android:orientation="vertical"
-                android:visibility="visible"
-                android:padding="70dp"
-                android:gravity="center">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:src="@drawable/home" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Trang cá nhân"
-                    android:gravity="center"
-                    android:textSize="25dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Khi bạn chia sẻ ảnh và video, ảnh và video sẽ xuất hiện trên trang cá nhân của bản."
-                    android:gravity="center"
-                    android:textSize="17dp"
-                    android:textColor="#A9414141"
-                    />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Chia sẻ ảnh hoặc video đầu tiên của bạn"
-                    android:gravity="center"
-                    android:textSize="17dp"
-                    android:textStyle="bold"
-                    android:textColor="#2196F3"
-                    />
-            </LinearLayout>
-            <GridView
-                android:id="@+id/gv_listStatus"
-                android:layout_width="match_parent"
-                android:layout_height="600dp"
-                android:numColumns="3"
-                android:visibility="visible"
-                android:verticalSpacing="5dp"
-                android:horizontalSpacing="0dp"
-                />
-
-
+                </LinearLayout>
+            </HorizontalScrollView>
 
         </LinearLayout>
-    </ScrollView>
-</RelativeLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/ic_gird"
+            />
+
+        <LinearLayout
+            android:id="@+id/linearLayout_0status"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:padding="70dp"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:src="@drawable/home" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Trang cá nhân"
+                android:gravity="center"
+                android:textSize="25dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Khi bạn chia sẻ ảnh và video, ảnh và video sẽ xuất hiện trên trang cá nhân của bản."
+                android:gravity="center"
+                android:textSize="17dp"
+                android:textColor="#A9414141"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chia sẻ ảnh hoặc video đầu tiên của bạn"
+                android:gravity="center"
+                android:textSize="17dp"
+                android:textStyle="bold"
+                android:textColor="#2196F3"
+                />
+        </LinearLayout>
+        <GridView
+            android:id="@+id/gv_listStatus"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
+            android:numColumns="3"
+            android:visibility="visible"
+            android:verticalSpacing="5dp"
+            android:horizontalSpacing="0dp"
+            />
+
+    </LinearLayout>
+</ScrollView>
