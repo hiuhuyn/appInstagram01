@@ -6,23 +6,19 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import androidx.viewpager2.widget.ViewPager2
+
 import com.example.instagram01.Fragments.*
 import com.example.instagram01.Fragments.home.Fragment_home
 import com.example.instagram01.Fragments.notification.Fragment_notifications
 import com.example.instagram01.Fragments.profile.Fragment_profile
 import com.example.instagram01.Fragments.search.Fragment_search
 import com.example.instagram01.R
-import com.example.instagram01.adapters.SettingShowFragment
-import com.example.instagram01.adapters.ViewPagerAdapter_main
 import com.example.instagram01.model.User
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationBarView
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var nav_bottom:BottomNavigationView
-    private lateinit var viewPager2: ViewPager2
     lateinit var toolbar: Toolbar
 
     @SuppressLint("ResourceType")
@@ -31,73 +27,43 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         nav_bottom = findViewById(R.id.nav_bottom)
         toolbar = findViewById(R.id.toolbar)
-        viewPager2 = findViewById(R.id.viewPager2)
         setSupportActionBar(toolbar)
-        viewPager2.adapter = ViewPagerAdapter_main(this, object : SettingShowFragment{
-            override fun isUserMain(): Boolean {
-                return true
-            }
-
-            override fun user(): User {
-                return User("Quan@1", 111, true, "29/11/22", "Minh Quân", "2911", "No desc", R.drawable.avt_test)
-            }
-
-        })
-
+        supportFragmentManager.beginTransaction().add(
+            R.id.fragment_main, Fragment_home()
+        ).commit()
 
         addEvent()
     }
 
 
     private fun addEvent() {
-        viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
-            ) {
-            }
-
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                when(position){
-                    0 -> {
-                        nav_bottom.selectedItemId = R.id.nav_home
-                    }
-                    1 -> {
-                        nav_bottom.selectedItemId = R.id.nav_search
-                    }
-                    2 -> {
-                        nav_bottom.selectedItemId = R.id.nav_notifications
-                    }
-                    3 -> {
-                        nav_bottom.selectedItemId = R.id.nav_profile
-                    }
-                }
-            }
-
-            override fun onPageScrollStateChanged(state: Int) {
-            }
-
-        })
-
 
         nav_bottom.setOnItemSelectedListener {
+            var tag = ""
+            var selectorFragment: Fragment = Fragment_home()
             when(it.itemId) {
                 R.id.nav_home -> {
-                    viewPager2.currentItem = 0
+                    tag = "home"
+                    selectorFragment = Fragment_home()
                 }
                 R.id.nav_search -> {
-                    viewPager2.currentItem = 1
+                    tag = "search"
+                    selectorFragment = Fragment_search()
                 }
                 R.id.nav_notifications -> {
-                    viewPager2.currentItem = 2
-
+                    tag = "notifications"
+                    selectorFragment = Fragment_notifications()
                 }
                 R.id.nav_profile -> {
-                    viewPager2.currentItem = 3
+                    tag = "profile"
+                    selectorFragment = Fragment_profile.newInstance(true, User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "jjjjj", "des", R.drawable.avt_test))
                 }
             }
+            supportFragmentManager.beginTransaction().replace(
+                R.id.fragment_main,
+                selectorFragment,
+                tag
+            ).addToBackStack(tag).commit()
             true
         }
     }

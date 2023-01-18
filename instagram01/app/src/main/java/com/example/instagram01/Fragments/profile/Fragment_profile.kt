@@ -1,12 +1,15 @@
 package com.example.instagram01.Fragments.profile
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.instagram01.Fragments.home.Fragment_home
 import com.example.instagram01.R
 import com.example.instagram01.activity.EditProfile_Activity
 import com.example.instagram01.activity.MainActivity
@@ -16,6 +19,7 @@ import com.example.instagram01.interfaceFun.OnClickListent
 import com.example.instagram01.model.ImageStaus
 import com.example.instagram01.model.Status
 import com.example.instagram01.model.User
+import java.time.LocalDate
 
 
 private const val ARG_IS_USER_MAIN = "isusermain"
@@ -83,6 +87,7 @@ class Fragment_profile : Fragment() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -107,12 +112,11 @@ class Fragment_profile : Fragment() {
         img_avt_profile  = view.findViewById(R.id.img_avt_profile)
 
         mainActivity.toolbar.title = "gyn.huyn"
-
         setProfile()
 
         dataArray()
         setAdapter_status(view, listUser)
-        setAdapter_users(view, listUser)
+        setAdapter_users(view, listUser, container)
         addEvent(view)
 
         if (isUserMain){
@@ -171,7 +175,10 @@ class Fragment_profile : Fragment() {
         }
     }
     private fun setAdapter_status(view: View, array: ArrayList<User>){
-        val customeRvAdapter_status_profile = activity?.let { CustomeRvAdapter_status_profile(it, listStatus, listImages, object : OnClickListent {
+        val listStatusChild = listStatus
+
+
+        val customeRvAdapter_status_profile = activity?.let { CustomeRvAdapter_status_profile(it, listStatusChild, listImages, object : OnClickListent {
             override fun OnClickFollow(pos: Int, bool: Boolean) {
                 TODO("Not yet implemented")
             }
@@ -189,7 +196,7 @@ class Fragment_profile : Fragment() {
     }
 
 
-    private fun setAdapter_users(view: View, array: ArrayList<User>){
+    private fun setAdapter_users(view: View, array: ArrayList<User>, container: ViewGroup?){
         val array2 = array
         val adt= CustomeRvAdapter_addFriend_profile(array2, object : OnClickListent {
             override fun OnClickFollow(pos: Int, bool: Boolean) {
@@ -201,7 +208,10 @@ class Fragment_profile : Fragment() {
             }
 
             override fun OnClickView(pos: Int) {
-
+                parentFragmentManager.beginTransaction().replace(
+                    container!!.id,
+                    newInstance(false, array2[pos])
+                ).addToBackStack("tag_${array2[pos].UserName}").commit()
             }
         })
         rv_otherUser.adapter = adt
