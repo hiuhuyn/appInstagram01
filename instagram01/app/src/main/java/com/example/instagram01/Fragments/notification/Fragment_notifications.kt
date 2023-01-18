@@ -19,12 +19,9 @@ class Fragment_notifications : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        mainActivity.toolbar.title = "Thông báo"
-
     }
 
     override fun onPause() {
-        mainActivity.toolbar.title = ""
         super.onPause()
     }
 
@@ -35,6 +32,8 @@ class Fragment_notifications : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_notifications, container, false)
         mainActivity = activity as MainActivity
+        mainActivity.toolbar.title = "Thông báo"
+        mainActivity.toolbar.navigationIcon = null
         return view
     }
 

@@ -7,9 +7,13 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.instagram01.Fragments.follow.Fragment_showFollow
 import com.example.instagram01.Fragments.home.Fragment_home
+import com.example.instagram01.Fragments.profile.child_profile.Fragment_showAllOtherUser
+import com.example.instagram01.Fragments.status.Fragment_showStatus_User
 import com.example.instagram01.R
 import com.example.instagram01.activity.EditProfile_Activity
 import com.example.instagram01.activity.MainActivity
@@ -67,12 +71,20 @@ class Fragment_profile : Fragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_appbar_profile, menu)
+        if (isUserMain){
+            inflater.inflate(R.menu.menu_appbar_profile, menu)
+        }else{
+            inflater.inflate(R.menu.menu_profile_otheruser, menu)
+
+        }
     }
 
     override fun onPause() {
-        mainActivity.toolbar.title = ""
         super.onPause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
     companion object {
@@ -112,12 +124,10 @@ class Fragment_profile : Fragment() {
         img_avt_profile  = view.findViewById(R.id.img_avt_profile)
 
         mainActivity.toolbar.title = "gyn.huyn"
-        setProfile()
 
-        dataArray()
-        setAdapter_status(view, listUser)
-        setAdapter_users(view, listUser, container)
-        addEvent(view)
+
+        mainActivity.toolbar.navigationIcon = null
+        mainActivity.toolbar.title = user.UserName
 
         if (isUserMain){
             linearLayout_follow_messenger.visibility = View.GONE
@@ -125,7 +135,21 @@ class Fragment_profile : Fragment() {
         }else{
             btn_editProfile.visibility = View.GONE
             linearLayout_follow_messenger.visibility = View.VISIBLE
+            mainActivity.toolbar.navigationIcon = ContextCompat.getDrawable(mainActivity, R.drawable.ic_return)
+            mainActivity.toolbar.setNavigationOnClickListener {
+                parentFragmentManager.popBackStack()
+            }
+
         }
+
+        setProfile()
+
+        dataArray()
+        setAdapter_status(view, listUser, container)
+        setAdapter_users(view, listUser, container)
+        addEvent(view, container)
+
+
 
 
         if (listStatus.size > 0){
@@ -144,7 +168,7 @@ class Fragment_profile : Fragment() {
         img_avt_profile.setImageResource(user.Avt)
     }
 
-    private fun addEvent(view: View) {
+    private fun addEvent(view: View, container: ViewGroup?) {
 
         btn_editProfile.setOnClickListener {
             val i = Intent(activity, EditProfile_Activity::class.java)
@@ -161,20 +185,32 @@ class Fragment_profile : Fragment() {
             }
         }
         txt_showAllOtherUser.setOnClickListener {
-//            mainActivity.goToFragment(Fragment_showAllOtherUser(), "showOtherUser")
+            parentFragmentManager.beginTransaction().replace(
+                container!!.id,
+                Fragment_showAllOtherUser()
+            ).addToBackStack("showOtherUser").commit()
         }
         btn_showAllOtherUser.setOnClickListener {
-//            mainActivity.goToFragment(Fragment_showAllOtherUser(), "showOtherUser")
+            parentFragmentManager.beginTransaction().replace(
+                container!!.id,
+                Fragment_showAllOtherUser()
+            ).addToBackStack("showOtherUser").commit()
         }
 
         linearLayout_followers.setOnClickListener {
-//            mainActivity.goToFragment(Fragment_showFollow(), "showFollow")
+            parentFragmentManager.beginTransaction().replace(
+                container!!.id,
+                Fragment_showFollow()
+            ).addToBackStack("showFollow").commit()
         }
         linearLayout_followed.setOnClickListener {
-//            mainActivity.goToFragment(Fragment_showFollow(), "showFollow")
+            parentFragmentManager.beginTransaction().replace(
+                container!!.id,
+                Fragment_showFollow()
+            ).addToBackStack("showFollow").commit()
         }
     }
-    private fun setAdapter_status(view: View, array: ArrayList<User>){
+    private fun setAdapter_status(view: View, array: ArrayList<User>, container: ViewGroup?){
         val listStatusChild = listStatus
 
 
@@ -188,9 +224,8 @@ class Fragment_profile : Fragment() {
             }
 
             override fun OnClickView(pos: Int) {
-//                mainActivity.goToFragment(Fragment_showStatus_User(), "status_user", pos)
+                parentFragmentManager.beginTransaction().replace(container!!.id, Fragment_showStatus_User()).addToBackStack("showStatus").commit()
             }
-
         }) }
         gv_listStatus.adapter = customeRvAdapter_status_profile
     }

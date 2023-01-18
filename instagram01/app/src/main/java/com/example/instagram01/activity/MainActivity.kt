@@ -18,7 +18,6 @@ import com.example.instagram01.model.User
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
-    private var backPressedTime:Long = 0
     private lateinit var nav_bottom:BottomNavigationView
     lateinit var toolbar: Toolbar
 
@@ -36,16 +35,6 @@ class MainActivity : AppCompatActivity() {
         addEvent()
     }
 
-    override fun onBackPressed() {
-
-        if (backPressedTime + 2000 > System.currentTimeMillis()){
-            super.onBackPressed()
-        }else{
-            Toast.makeText(this, "Nhất back 2 lần để thoát", Toast.LENGTH_SHORT).show()
-        }
-        backPressedTime = System.currentTimeMillis()
-
-    }
 
 
     private fun addEvent() {

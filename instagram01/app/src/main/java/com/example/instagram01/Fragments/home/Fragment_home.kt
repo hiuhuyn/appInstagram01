@@ -29,12 +29,13 @@ class Fragment_home : Fragment() {
         // Inflate the layout for this fragment
         val view : View = inflater.inflate(R.layout.fragment_home, container, false)
         mainActivity = activity as MainActivity
+        mainActivity.toolbar.title = "Instagram home"
+        mainActivity.toolbar.navigationIcon = null
 
         return view
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        mainActivity.toolbar.title = "Instagram home"
         inflater.inflate(R.menu.menu_appbar_home, menu)
     }
 
@@ -44,8 +45,6 @@ class Fragment_home : Fragment() {
     }
 
     override fun onPause() {
-//        setHasOptionsMenu(false)
-        mainActivity.toolbar.title = ""
         super.onPause()
     }
 

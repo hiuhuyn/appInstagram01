@@ -1,10 +1,8 @@
 package com.example.instagram01.Fragments.follow
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentStatePagerAdapter
@@ -40,8 +38,13 @@ class Fragment_showFollow : Fragment() {
         tabLayout = view.findViewById(R.id.tabLLayout_follow)
         viewPager = view.findViewById(R.id.viewPager2_follow)
         mainActivity = activity as MainActivity
+
         mainActivity.toolbar.navigationIcon = ContextCompat.getDrawable(mainActivity, R.drawable.ic_return)
         mainActivity.toolbar.title = "gyn.huyn"
+        mainActivity.toolbar.setNavigationOnClickListener {
+            parentFragmentManager.popBackStack()
+        }
+
         viewPager.adapter = ViewPageAdapter_follow(this)
 
         val tabMediator = TabLayoutMediator(tabLayout, viewPager) { tab, position ->
@@ -61,10 +64,11 @@ class Fragment_showFollow : Fragment() {
         return view
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
     override fun onPause() {
-        setHasOptionsMenu(false)
-        mainActivity.toolbar.navigationIcon = null
-        mainActivity.toolbar.title = ""
         super.onPause()
     }
 

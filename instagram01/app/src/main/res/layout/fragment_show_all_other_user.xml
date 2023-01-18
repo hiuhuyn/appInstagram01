@@ -5,27 +5,14 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.profile.child_profile.Fragment_showAllOtherUser">
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_showAllUser"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:background="@color/white"
-        >
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_showOtherUser"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:navigationIcon="@drawable/ic_return"
-            app:title="Khám phá mọi người"
-            />
-    </com.google.android.material.appbar.AppBarLayout>
-    <GridView
-        android:id="@+id/gv_showOtherUser"
-        android:layout_below="@+id/appBarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-
-
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        />
 </RelativeLayout>
