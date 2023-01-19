@@ -8,6 +8,8 @@ import android.widget.Button
 import android.widget.Toolbar
 import com.example.instagram01.R
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.instagram01.activity.MainActivity
 
 
@@ -31,6 +33,14 @@ class Fragment_home : Fragment() {
         mainActivity = activity as MainActivity
         mainActivity.toolbar.title = "Instagram"
         mainActivity.toolbar.navigationIcon = null
+
+        var recyclerView: RecyclerView? = null
+        recyclerView = view.findViewById(R.id.view_home)
+        val linearLayoutManager = LinearLayoutManager(context)
+        linearLayoutManager.reverseLayout = true
+        linearLayoutManager.stackFromEnd
+        recyclerView.layoutManager = linearLayoutManager
+
         return view
     }
 
