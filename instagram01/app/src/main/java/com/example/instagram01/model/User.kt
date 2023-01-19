@@ -1,14 +1,17 @@
 package com.example.instagram01.model
 
+import androidx.core.content.ContextCompat
+import com.example.instagram01.R
+
 class User: java.io.Serializable {
-    private var email: String = ""
+    private var email: String = "" // khóa chính
     private var phoneNumber: Short = 0
     private var sex: Boolean = true
     private var birthday: String = ""
     private var fullName: String = ""
-    private var userName: String = ""
+    private var userName: String = "" // độc nhất
     private var desc: String = ""
-    private var avt: Int = 0
+    private var avt: Int = R.drawable.avt_test
 
     constructor()
     constructor(
@@ -62,6 +65,9 @@ class User: java.io.Serializable {
         get() { return avt}
         set(value) { avt = value}
 
+    override fun toString(): String {
+        return "User(email='$email', phoneNumber=$phoneNumber, sex=$sex, birthday='$birthday', fullName='$fullName', userName='$userName', desc='$desc', avt=$avt)"
+    }
 
 
 }

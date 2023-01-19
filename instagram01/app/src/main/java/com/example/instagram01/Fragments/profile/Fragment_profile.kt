@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.instagram01.Fragments.follow.Fragment_showFollow
@@ -52,6 +53,9 @@ class Fragment_profile : Fragment() {
     private lateinit var txt_name_profile: TextView
     private lateinit var txt_desc_profile: TextView
     private lateinit var img_avt_profile: ImageView
+    private lateinit var btn_follow: Button
+    private lateinit var btn_messenger: Button
+
 
 
     private var isUserMain: Boolean = false
@@ -80,6 +84,11 @@ class Fragment_profile : Fragment() {
     }
 
     override fun onPause() {
+        listStatus.clear()
+        listUser.clear()
+        listImages.clear()
+        mainActivity.toolbar.navigationIcon = null
+        mainActivity.toolbar.title =  ""
         super.onPause()
     }
 
@@ -99,6 +108,7 @@ class Fragment_profile : Fragment() {
 
     }
 
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -106,27 +116,13 @@ class Fragment_profile : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
+        init(view)
+        dataArray()
+        setProfile()
+        setAdapter_status(listUser, container)
+        setAdapter_users(listUser, container)
+        addEvent(view, container)
 
-        mainActivity = activity as MainActivity
-        btn_editProfile = view.findViewById(R.id.btn_edit_Profile_User)
-        img_showOtherUser = view.findViewById(R.id.img_showOtherUser)
-        rv_otherUser = view.findViewById(R.id.rv_otherUser)
-        gv_listStatus = view.findViewById(R.id.gv_listStatus)
-        ll0status = view.findViewById(R.id.linearLayout_0status)
-        btn_showAllOtherUser = view.findViewById(R.id.btn_showAllOtherUser_pofile)
-        txt_showAllOtherUser = view.findViewById(R.id.txt_showAllOtherUser_profile)
-        liearLayout_ohterUser_profile = view.findViewById(R.id.liearLayout_ohterUser_profile)
-        linearLayout_followers  = view.findViewById( R.id.linearLayout_followers)
-        linearLayout_followed  = view.findViewById( R.id.linearLayout_followed)
-        linearLayout_follow_messenger  =  view.findViewById(R.id.linearLayout_follow_messenger)
-        txt_name_profile = view.findViewById(R.id.txt_name_profile)
-        txt_desc_profile = view.findViewById(R.id.txt_desc_profile)
-        img_avt_profile  = view.findViewById(R.id.img_avt_profile)
-
-        mainActivity.toolbar.title = "gyn.huyn"
-
-
-        mainActivity.toolbar.navigationIcon = null
         mainActivity.toolbar.title = user.UserName
 
         if (isUserMain){
@@ -142,16 +138,6 @@ class Fragment_profile : Fragment() {
 
         }
 
-        setProfile()
-
-        dataArray()
-        setAdapter_status(view, listUser, container)
-        setAdapter_users(view, listUser, container)
-        addEvent(view, container)
-
-
-
-
         if (listStatus.size > 0){
             ll0status.visibility = View.GONE
             gv_listStatus.visibility = View.VISIBLE
@@ -159,7 +145,30 @@ class Fragment_profile : Fragment() {
             ll0status.visibility = View.VISIBLE
             gv_listStatus.visibility = View.GONE
         }
+
         return view
+    }
+
+    private fun init(view: View?) {
+        if (view != null){
+            mainActivity = activity as MainActivity
+            btn_editProfile = view.findViewById(R.id.btn_edit_Profile_User)
+            img_showOtherUser = view.findViewById(R.id.img_showOtherUser)
+            rv_otherUser = view.findViewById(R.id.rv_otherUser)
+            gv_listStatus = view.findViewById(R.id.gv_listStatus)
+            ll0status = view.findViewById(R.id.linearLayout_0status)
+            btn_showAllOtherUser = view.findViewById(R.id.btn_showAllOtherUser_pofile)
+            txt_showAllOtherUser = view.findViewById(R.id.txt_showAllOtherUser_profile)
+            liearLayout_ohterUser_profile = view.findViewById(R.id.liearLayout_ohterUser_profile)
+            linearLayout_followers  = view.findViewById( R.id.linearLayout_followers)
+            linearLayout_followed  = view.findViewById( R.id.linearLayout_followed)
+            linearLayout_follow_messenger  =  view.findViewById(R.id.linearLayout_follow_messenger)
+            txt_name_profile = view.findViewById(R.id.txt_name_profile)
+            txt_desc_profile = view.findViewById(R.id.txt_desc_profile)
+            img_avt_profile  = view.findViewById(R.id.img_avt_profile)
+            btn_follow = view.findViewById(R.id.btn_follow)
+            btn_messenger = view.findViewById(R.id.btn_messenger)
+        }
     }
 
     private fun setProfile() {
@@ -169,6 +178,28 @@ class Fragment_profile : Fragment() {
     }
 
     private fun addEvent(view: View, container: ViewGroup?) {
+
+        btn_follow.setOnClickListener {
+            var colorBtn: Int = 0
+            var colorText: Int = 0
+            var bool: Boolean = true
+            if(btn_follow.text.equals("Theo dõi")){ // lúc click mà nút đang ở trạng thái theo dõi thì thay đổi
+                btn_follow.setText("Đang theo dõi")
+                colorBtn = ContextCompat.getColor(container!!.context, R.color.greyish)
+                colorText = ContextCompat.getColor(container.context, R.color.black)
+                btn_follow.setBackgroundColor(colorBtn)
+                btn_follow.setTextColor(colorText)
+                bool = true // follow
+            }else{
+                btn_follow.setText("Theo dõi")
+                colorBtn = ContextCompat.getColor(container!!.context, R.color.blue)
+                colorText = ContextCompat.getColor(container.context, R.color.white)
+                btn_follow.setBackgroundColor(colorBtn)
+                btn_follow.setTextColor(colorText)
+                bool = false // unFollow
+            }
+        }
+
 
         btn_editProfile.setOnClickListener {
             val i = Intent(activity, EditProfile_Activity::class.java)
@@ -210,11 +241,9 @@ class Fragment_profile : Fragment() {
             ).addToBackStack("showFollow").commit()
         }
     }
-    private fun setAdapter_status(view: View, array: ArrayList<User>, container: ViewGroup?){
+    private fun setAdapter_status(array: ArrayList<User>, container: ViewGroup?){
         val listStatusChild = listStatus
-
-
-        val customeRvAdapter_status_profile = activity?.let { CustomeRvAdapter_status_profile(it, listStatusChild, listImages, object : OnClickListent {
+        val customeRvAdapter_status_profile = CustomeRvAdapter_status_profile(container!!.context as FragmentActivity, listStatusChild, listImages, object : OnClickListent {
             override fun OnClickFollow(pos: Int, bool: Boolean) {
                 TODO("Not yet implemented")
             }
@@ -226,12 +255,12 @@ class Fragment_profile : Fragment() {
             override fun OnClickView(pos: Int) {
                 parentFragmentManager.beginTransaction().replace(container!!.id, Fragment_showStatus_User()).addToBackStack("showStatus").commit()
             }
-        }) }
+        })
         gv_listStatus.adapter = customeRvAdapter_status_profile
     }
 
 
-    private fun setAdapter_users(view: View, array: ArrayList<User>, container: ViewGroup?){
+    private fun setAdapter_users(array: ArrayList<User>, container: ViewGroup?){
         val array2 = array
         val adt= CustomeRvAdapter_addFriend_profile(array2, object : OnClickListent {
             override fun OnClickFollow(pos: Int, bool: Boolean) {
@@ -262,14 +291,16 @@ class Fragment_profile : Fragment() {
         listStatus.add(Status(1, "gyn", "hehe" ))
         listStatus.add(Status(2, "gyn", "ass2" ))
         listStatus.add(Status(3, "gyn", "ass2" ))
+        listStatus.add(Status(4, "gyn", "ass2" ))
+        listStatus.add(Status(5, "gyn", "ass2" ))
 
 
-        listImages.add(ImageStaus(0, 0, R.drawable.ic_launcher_background))
-        listImages.add(ImageStaus(1, 0, R.drawable.ic_launcher_background))
-        listImages.add(ImageStaus(2, 1, R.drawable.ic_launcher_background))
-        listImages.add(ImageStaus(3, 2, R.drawable.ic_launcher_background))
-        listImages.add(ImageStaus(4, 2, R.drawable.ic_launcher_background))
-        listImages.add(ImageStaus(5, 3, R.drawable.ic_launcher_background))
+        listImages.add(ImageStaus(0, 0, R.drawable.add))
+        listImages.add(ImageStaus(1, 1, R.drawable.avt_test))
+        listImages.add(ImageStaus(2, 2, R.drawable.ic_close_x))
+        listImages.add(ImageStaus(3, 3, R.drawable.add_friend1))
+        listImages.add(ImageStaus(4, 4, R.drawable.add_friend2))
+        listImages.add(ImageStaus(5, 5, R.drawable.messenger))
 
         listUser.add((User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "gynhuyn", "des", R.drawable.user )))
         listUser.add((User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "ha", "des", R.drawable.add )))

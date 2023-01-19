@@ -5,13 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
+import androidx.fragment.app.FragmentActivity
 import com.example.instagram01.R
 import com.example.instagram01.interfaceFun.OnClickListent
 import com.example.instagram01.model.ImageStaus
 import com.example.instagram01.model.Status
 
 
-class CustomeRvAdapter_status_profile(val activity: Activity, val list:List<Status>, val images: List<ImageStaus>, val onClickListent: OnClickListent): ArrayAdapter<Status>(activity, R.layout.item_witget_status_profile) {
+class CustomeRvAdapter_status_profile(val fragmentActivity: FragmentActivity, val list:List<Status>, val images: List<ImageStaus>, val onClickListent: OnClickListent): ArrayAdapter<Status>(fragmentActivity, R.layout.item_witget_status_profile) {
     override fun getCount(): Int {
         return list.size
     }
@@ -21,7 +22,7 @@ class CustomeRvAdapter_status_profile(val activity: Activity, val list:List<Stat
     }
 
     private fun initView(position: Int, convertView: View?, parent: ViewGroup): View{
-        val context = activity.layoutInflater
+        val context = fragmentActivity.layoutInflater
         val rowView = context.inflate(R.layout.item_witget_status_profile, parent, false)
         val image = rowView.findViewById<ImageView>(R.id.img_status)
         val icon = rowView.findViewById<ImageView>(R.id.ic_photos)

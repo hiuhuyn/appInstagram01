@@ -25,7 +25,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar_editProfile"
-        android:layout_marginBottom="0dp">
+        android:layout_alignParentBottom="true"
+        >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,10 +38,10 @@
                 android:layout_gravity="center"
                 app:cardCornerRadius="50dp">
                 <ImageView
-                    android:id="@+id/img_avt_editProfile"
+                    android:id="@+id/img_avt"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/avt_test" />
+                    android:src="@drawable/make_btn_radius_10" />
             </androidx.cardview.widget.CardView>
             <TextView
                 android:layout_width="match_parent"
@@ -48,7 +49,7 @@
                 android:text="Chỉnh sửa ảnh"
                 android:gravity="center"
                 android:textStyle="bold"
-                android:textSize="17dp"
+                android:textSize="17sp"
                 android:textColor="@color/blue"
                 android:layout_marginBottom="20dp"
                 />
@@ -58,13 +59,17 @@
                 android:text="Tên"
                 android:gravity="left"
                 android:textColor="#6E6E6E"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 />
+
             <EditText
+                android:id="@+id/edt_fullName"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:hint="Họ và tên"
-                android:maxLength="50"/>
+                android:maxLength="50"
+                android:inputType="textPersonName"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -72,13 +77,17 @@
                 android:text="Tên người dùng"
                 android:gravity="left"
                 android:textColor="#6E6E6E"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 />
+
             <EditText
+                android:id="@+id/edt_userName"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:hint="Tên người dùng"
-                android:maxLength="50"/>
+                android:maxLength="50"
+                android:inputType="text"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -88,11 +97,14 @@
                 android:textColor="#6E6E6E"
                 android:textSize="15dp"
                 />
+
             <EditText
+                android:id="@+id/edt_email"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
+                android:enabled="false"
                 android:text="acctor@gmail.com"
-                android:enabled="false"/>
+                tools:ignore="TouchTargetSizeCheck" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -100,13 +112,16 @@
                 android:text="Số điện thoại"
                 android:gravity="left"
                 android:textColor="#6E6E6E"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 />
+
             <EditText
+                android:id="@+id/edt_phoneNumber"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:hint="Số điện thoại"
-                android:maxLength="50"/>
+                android:maxLength="15"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -114,13 +129,16 @@
                 android:text="Sinh nhật"
                 android:gravity="left"
                 android:textColor="#6E6E6E"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 />
+
             <EditText
+                android:id="@+id/edt_birthday"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:hint="Sinh nhật"
-                android:inputType="date"/>
+                android:inputType="date"
+                tools:ignore="TouchTargetSizeCheck" />
 
 
             <TextView
@@ -129,13 +147,33 @@
                 android:text="Giới tính"
                 android:gravity="left"
                 android:textColor="#6E6E6E"
-                android:textSize="15dp"/>
-            <EditText
+                android:textSize="15sp"/>
+            <RadioGroup
+                android:id="@+id/radioGroup_sex"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="Nam"
-                android:enabled="false"
-                />
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/icon_sex"
+                    />
+                <RadioButton
+                    android:id="@+id/radio_button_male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Nam"
+                    android:layout_marginStart="40dp"
+                    android:checked="true"
+                    />
+                <RadioButton
+                    android:id="@+id/radio_button_female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Nữ"
+                    android:layout_marginStart="40dp"
+                    />
+            </RadioGroup>
 
 
             <TextView
@@ -144,15 +182,19 @@
                 android:text="Tiểu sử"
                 android:gravity="left"
                 android:textColor="#6E6E6E"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 />
+
             <EditText
+                android:id="@+id/edt_desc"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:hint="Tiểu sử" />
-
-
-
+                android:layout_height="wrap_content"
+                android:hint="Tiểu sử"
+                android:inputType="textMultiLine"
+                tools:ignore="TouchTargetSizeCheck"
+                android:layout_marginBottom="20dp"
+                android:maxLength="255"
+                />
         </LinearLayout>
 
 
