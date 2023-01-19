@@ -29,9 +29,8 @@ class Fragment_home : Fragment() {
         // Inflate the layout for this fragment
         val view : View = inflater.inflate(R.layout.fragment_home, container, false)
         mainActivity = activity as MainActivity
-        mainActivity.toolbar.title = "Instagram home"
+        mainActivity.toolbar.title = "Instagram"
         mainActivity.toolbar.navigationIcon = null
-
         return view
     }
 
@@ -40,7 +39,6 @@ class Fragment_home : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
         return true
     }
 

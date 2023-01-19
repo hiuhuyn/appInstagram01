@@ -47,4 +47,5 @@ class Fragment_search : Fragment() {
         mainActivity = activity as MainActivity
         return view
     }
+
 }
