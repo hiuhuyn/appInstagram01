@@ -1,20 +1,16 @@
 package com.example.instagram01.Fragments.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import android.widget.Button
-import android.widget.Toolbar
 import com.example.instagram01.R
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.instagram01.activity.MainActivity
+import com.example.instagram01.activity.HomePageActivity
 
 
 class Fragment_home : Fragment() {
-    private lateinit var mainActivity: MainActivity
+    private lateinit var mainActivity: HomePageActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +26,7 @@ class Fragment_home : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         val view : View = inflater.inflate(R.layout.fragment_home, container, false)
-        mainActivity = activity as MainActivity
+        mainActivity = activity as HomePageActivity
         mainActivity.toolbar.title = "Instagram"
         mainActivity.toolbar.navigationIcon = null
 

@@ -3,8 +3,6 @@ package com.example.instagram01.activity
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 
@@ -17,7 +15,7 @@ import com.example.instagram01.R
 import com.example.instagram01.model.User
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainActivity : AppCompatActivity() {
+class HomePageActivity : AppCompatActivity() {
     private lateinit var nav_bottom:BottomNavigationView
     lateinit var toolbar: Toolbar
 
@@ -33,6 +31,14 @@ class MainActivity : AppCompatActivity() {
         ).commit()
 
         addEvent()
+    }
+
+    override fun onPause() {
+        super.onPause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
 

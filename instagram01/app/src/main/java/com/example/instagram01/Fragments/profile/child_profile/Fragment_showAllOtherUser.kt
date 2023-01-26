@@ -2,24 +2,20 @@ package com.example.instagram01.Fragments.profile.child_profile
 
 import android.os.Bundle
 import android.view.*
-import android.widget.GridView
 import androidx.fragment.app.Fragment
-import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.instagram01.Fragments.profile.Fragment_profile
 import com.example.instagram01.R
-import com.example.instagram01.activity.MainActivity
+import com.example.instagram01.activity.HomePageActivity
 import com.example.instagram01.adapters.CustomeRvAdapter_addFriend_profile
 import com.example.instagram01.interfaceFun.OnClickListent
-import com.example.instagram01.model.ImageStaus
-import com.example.instagram01.model.Status
 import com.example.instagram01.model.User
 
 
 class Fragment_showAllOtherUser : Fragment() {
-    private lateinit var mainActivity: MainActivity
+    private lateinit var mainActivity: HomePageActivity
     private lateinit var recyclerView: RecyclerView
     private var listUser: ArrayList<User> = ArrayList()
 
@@ -49,7 +45,7 @@ class Fragment_showAllOtherUser : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_show_all_other_user, container, false)
-        mainActivity = activity as MainActivity
+        mainActivity = activity as HomePageActivity
         mainActivity.toolbar.navigationIcon = ContextCompat.getDrawable(mainActivity, R.drawable.ic_return)
         mainActivity.toolbar.title = "Khám phá mọi người"
         mainActivity.toolbar.setNavigationOnClickListener {

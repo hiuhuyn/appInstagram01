@@ -12,19 +12,17 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.instagram01.Fragments.follow.Fragment_showFollow
-import com.example.instagram01.Fragments.home.Fragment_home
 import com.example.instagram01.Fragments.profile.child_profile.Fragment_showAllOtherUser
 import com.example.instagram01.Fragments.status.Fragment_showStatus_User
 import com.example.instagram01.R
 import com.example.instagram01.activity.EditProfile_Activity
-import com.example.instagram01.activity.MainActivity
+import com.example.instagram01.activity.HomePageActivity
 import com.example.instagram01.adapters.CustomeRvAdapter_addFriend_profile
 import com.example.instagram01.adapters.CustomeRvAdapter_status_profile
 import com.example.instagram01.interfaceFun.OnClickListent
 import com.example.instagram01.model.ImageStaus
 import com.example.instagram01.model.Status
 import com.example.instagram01.model.User
-import java.time.LocalDate
 
 
 private const val ARG_IS_USER_MAIN = "isusermain"
@@ -32,7 +30,7 @@ private const val ARG_IS_USER_OTHER = "userother"
 
 
 class Fragment_profile : Fragment() {
-    private lateinit var mainActivity: MainActivity
+    private lateinit var mainActivity: HomePageActivity
 
     private var listStatus:ArrayList<Status> = ArrayList()
     private var listImages: ArrayList<ImageStaus> = ArrayList()
@@ -151,7 +149,7 @@ class Fragment_profile : Fragment() {
 
     private fun init(view: View?) {
         if (view != null){
-            mainActivity = activity as MainActivity
+            mainActivity = activity as HomePageActivity
             btn_editProfile = view.findViewById(R.id.btn_edit_Profile_User)
             img_showOtherUser = view.findViewById(R.id.img_showOtherUser)
             rv_otherUser = view.findViewById(R.id.rv_otherUser)

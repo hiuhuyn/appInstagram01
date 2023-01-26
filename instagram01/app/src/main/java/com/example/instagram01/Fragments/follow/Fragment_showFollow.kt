@@ -3,23 +3,19 @@ package com.example.instagram01.Fragments.follow
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentStatePagerAdapter
-import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.example.instagram01.R
-import com.example.instagram01.activity.MainActivity
+import com.example.instagram01.activity.HomePageActivity
 import com.example.instagram01.adapters.ViewPageAdapter_follow
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-import com.google.android.material.tabs.TabLayoutMediator.TabConfigurationStrategy
 
 
 class Fragment_showFollow : Fragment() {
    private lateinit var tabLayout: TabLayout
    private lateinit var viewPager: ViewPager2
-   private lateinit var mainActivity: MainActivity
+   private lateinit var mainActivity: HomePageActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)
@@ -37,7 +33,7 @@ class Fragment_showFollow : Fragment() {
         val view = inflater.inflate(R.layout.fragment_show_follow, container, false)
         tabLayout = view.findViewById(R.id.tabLLayout_follow)
         viewPager = view.findViewById(R.id.viewPager2_follow)
-        mainActivity = activity as MainActivity
+        mainActivity = activity as HomePageActivity
 
         mainActivity.toolbar.navigationIcon = ContextCompat.getDrawable(mainActivity, R.drawable.ic_return)
         mainActivity.toolbar.title = "gyn.huyn"

@@ -2,20 +2,16 @@ package com.example.instagram01.Fragments.search
 
 import android.app.SearchManager
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
-import androidx.core.content.ContextCompat
-import androidx.core.content.getSystemService
-import androidx.core.view.marginEnd
 import androidx.fragment.app.Fragment
 import com.example.instagram01.R
-import com.example.instagram01.activity.MainActivity
+import com.example.instagram01.activity.HomePageActivity
 
 
 class Fragment_search : Fragment() {
-    private lateinit var mainActivity: MainActivity
+    private lateinit var mainActivity: HomePageActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)
@@ -44,7 +40,7 @@ class Fragment_search : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_search, container, false)
-        mainActivity = activity as MainActivity
+        mainActivity = activity as HomePageActivity
         return view
     }
 
