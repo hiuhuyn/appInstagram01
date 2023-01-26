@@ -4,16 +4,16 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import com.example.instagram01.R
 
 class LoginActivity : AppCompatActivity() {
     private var check: Boolean = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val sigup = findViewById<TextView>(R.id.tv_sigup)
         val myperf: SharedPreferences = getSharedPreferences("dataSave", MODE_PRIVATE)
         check = myperf.getBoolean("checkLogin", false)
-
-
         if (check){
             val i = Intent(this, HomePageActivity::class.java)
             startActivity(i)
@@ -22,8 +22,10 @@ class LoginActivity : AppCompatActivity() {
             setContentView(R.layout.activity_login)
             check = true // kiểm tra login thành công thì đổi check = true
         }
+        sigup.setOnClickListener {
+            startActivity(Intent(this, SigupActivity::class.java))
+        }
     }
-
     override fun onPause() {
         super.onPause()
         val myperf: SharedPreferences = getSharedPreferences("dataSave", MODE_PRIVATE)

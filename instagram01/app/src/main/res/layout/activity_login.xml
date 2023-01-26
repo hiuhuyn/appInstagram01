@@ -1,15 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    tools:context=".activity.LoginActivity"
+    android:background="@drawable/backgroud_instagram"
+    >
+    <ImageView
+        android:id="@+id/icon_logo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/icon_instagram"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        />
     <TextView
+        android:id="@+id/welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="174dp"
-        android:layout_marginEnd="176dp"
-        android:text="Layout Login" />
+        android:text="Welcome in Instagram"
+        android:textColor="@color/white"
+        android:layout_below="@+id/icon_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold"
+        />
+    <EditText
+        android:id="@+id/edt_userName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/backgroud_bt"
+        android:hint="Username, Phone or email"
+        android:layout_below="@+id/welcome"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:textSize="15dp"
+        android:textColorHint="@color/white"
+        android:layout_marginHorizontal="70dp"
+        />
+    <EditText
+        android:id="@+id/edt_passWord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/backgroud_bt"
+        android:hint="Password"
+        android:layout_below="@+id/edt_userName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textSize="15dp"
+        android:textColorHint="@color/white"
+        android:layout_marginHorizontal="70dp"
+        />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:layout_below="@+id/edt_passWord"
+        android:layout_centerInParent="true"
+        android:layout_marginHorizontal="70dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/backgroud_bt"
+        android:text="Đăng nhập"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/tv_forgetpassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quên mật khẩu?"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_below="@+id/btn_login"
+        android:gravity="end"
+        android:layout_marginRight="70dp"
+        android:layout_marginTop="5dp"
+        android:onClick="onClick"
+        android:clickable="true"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_below="@+id/tv_forgetpassword"
+        android:layout_marginTop="80dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bạn chưa có tài khoản?"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:id="@+id/tv_sigup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đăng ký!"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:onClick="onClick"
+            android:clickable="true"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="70dp"
+        android:layout_marginLeft="50dp"
+        >
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="70dp"
+            android:src="@drawable/logo_fb" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Đăng nhập qua Facebook"
+            android:gravity="center_vertical"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            />
+    </LinearLayout>
+
 
 </RelativeLayout>
