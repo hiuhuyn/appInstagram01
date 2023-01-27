@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.LoginActivity"
-    android:background="@drawable/backgroud_instagram"
+    android:background="@color/white"
     >
     <ImageView
         android:id="@+id/icon_logo"
-        android:layout_width="50dp"
+        android:layout_width="100dp"
         android:layout_height="50dp"
-        android:src="@drawable/icon_instagram"
+        android:src="@drawable/logos_instagram"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="150dp"
         />
@@ -20,13 +20,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Welcome in Instagram"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:layout_below="@+id/icon_logo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="1dp"
         android:textStyle="bold"
         />
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edt_userName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -36,10 +36,10 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
         android:textSize="15dp"
-        android:textColorHint="@color/white"
         android:layout_marginHorizontal="70dp"
+        android:inputType="textEmailAddress"
         />
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/edt_passWord"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -49,10 +49,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:textSize="15dp"
-        android:textColorHint="@color/white"
         android:layout_marginHorizontal="70dp"
+        android:inputType="textPassword"
         />
-
     <Button
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
@@ -61,7 +60,7 @@
         android:layout_centerInParent="true"
         android:layout_marginHorizontal="70dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/backgroud_bt"
+        android:background="@drawable/backgroud_btn"
         android:text="Đăng nhập"
         android:textColor="@color/white" />
 
@@ -71,7 +70,7 @@
         android:layout_height="wrap_content"
         android:text="Quên mật khẩu?"
         android:textStyle="bold"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:layout_below="@+id/btn_login"
         android:gravity="end"
         android:layout_marginRight="70dp"
@@ -91,42 +90,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Bạn chưa có tài khoản?"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textStyle="bold"
+            android:textSize="15dp"
             />
         <TextView
             android:id="@+id/tv_sigup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Đăng ký!"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textStyle="bold"
             android:onClick="onClick"
             android:clickable="true"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="70dp"
-        android:layout_marginLeft="50dp"
-        >
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="70dp"
-            android:src="@drawable/logo_fb" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Đăng nhập qua Facebook"
-            android:gravity="center_vertical"
-            android:textColor="@color/white"
-            android:textStyle="bold"
+            android:textSize="15dp"
             />
     </LinearLayout>
 
