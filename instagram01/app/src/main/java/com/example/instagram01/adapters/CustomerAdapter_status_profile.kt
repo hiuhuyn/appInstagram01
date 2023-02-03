@@ -1,6 +1,5 @@
 package com.example.instagram01.adapters
 
-import android.app.Activity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
@@ -12,7 +11,7 @@ import com.example.instagram01.model.ImageStaus
 import com.example.instagram01.model.Status
 
 
-class CustomeRvAdapter_status_profile(val fragmentActivity: FragmentActivity, val list:List<Status>, val images: List<ImageStaus>, val onClickListent: OnClickListent): ArrayAdapter<Status>(fragmentActivity, R.layout.item_witget_status_profile) {
+class CustomerAdapter_status_profile(val fragmentActivity: FragmentActivity, val list:List<Status>, val images: List<ImageStaus>, val onClickListent: OnClickListent): ArrayAdapter<Status>(fragmentActivity, R.layout.item_witget_status_profile) {
     override fun getCount(): Int {
         return list.size
     }

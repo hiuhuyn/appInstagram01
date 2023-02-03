@@ -18,11 +18,12 @@ import com.example.instagram01.R
 import com.example.instagram01.activity.EditProfile_Activity
 import com.example.instagram01.activity.HomePageActivity
 import com.example.instagram01.adapters.CustomeRvAdapter_addFriend_profile
-import com.example.instagram01.adapters.CustomeRvAdapter_status_profile
+import com.example.instagram01.adapters.CustomerAdapter_status_profile
 import com.example.instagram01.interfaceFun.OnClickListent
 import com.example.instagram01.model.ImageStaus
 import com.example.instagram01.model.Status
 import com.example.instagram01.model.User
+import java.util.Calendar
 
 
 private const val ARG_IS_USER_MAIN = "isusermain"
@@ -241,7 +242,7 @@ class Fragment_profile : Fragment() {
     }
     private fun setAdapter_status(array: ArrayList<User>, container: ViewGroup?){
         val listStatusChild = listStatus
-        val customeRvAdapter_status_profile = CustomeRvAdapter_status_profile(container!!.context as FragmentActivity, listStatusChild, listImages, object : OnClickListent {
+        val customerAdapter_status_profile = CustomerAdapter_status_profile(container!!.context as FragmentActivity, listStatusChild, listImages, object : OnClickListent {
             override fun OnClickFollow(pos: Int, bool: Boolean) {
                 TODO("Not yet implemented")
             }
@@ -254,7 +255,7 @@ class Fragment_profile : Fragment() {
                 parentFragmentManager.beginTransaction().replace(container!!.id, Fragment_showStatus_User()).addToBackStack("showStatus").commit()
             }
         })
-        gv_listStatus.adapter = customeRvAdapter_status_profile
+        gv_listStatus.adapter = customerAdapter_status_profile
     }
 
 
@@ -285,12 +286,12 @@ class Fragment_profile : Fragment() {
     }
 
     private fun dataArray(){
-        listStatus.add(Status(0, "gyn", "no"))
-        listStatus.add(Status(1, "gyn", "hehe" ))
-        listStatus.add(Status(2, "gyn", "ass2" ))
-        listStatus.add(Status(3, "gyn", "ass2" ))
-        listStatus.add(Status(4, "gyn", "ass2" ))
-        listStatus.add(Status(5, "gyn", "ass2" ))
+        listStatus.add(Status(0, "gyn", "no", Calendar.getInstance().time))
+        listStatus.add(Status(1, "gyn", "hehe", Calendar.getInstance().time))
+        listStatus.add(Status(2, "gyn", "ass2", Calendar.getInstance().time))
+        listStatus.add(Status(3, "gyn", "ass2", Calendar.getInstance().time))
+        listStatus.add(Status(4, "gyn", "ass2",Calendar.getInstance().time ))
+        listStatus.add(Status(5, "gyn", "ass2", Calendar.getInstance().time ))
 
 
         listImages.add(ImageStaus(0, 0, R.drawable.add))

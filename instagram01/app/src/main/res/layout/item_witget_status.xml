@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingVertical="10dp"
+    android:orientation="vertical"
+    android:background="@color/white">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:padding="10dp"
+        android:gravity="center_vertical">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView_avt"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:cardCornerRadius="50dp"
+            android:layout_alignParentStart="true">
+            <ImageView
+                android:id="@+id/img_avt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/avt_test" />
+        </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/tv_userName"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_toEndOf="@+id/cardView_avt"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentTop="true"
+            android:gravity="center"
+            android:text="userName"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            />
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_toEndOf="@+id/cardView_avt"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:text="1 giờ trước"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            />
+
+        <ImageButton
+            android:id="@+id/img_btn_menu"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_baseline_more_vert_24"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No body"
+        android:textStyle="normal"
+        android:textSize="17dp"
+        android:textColor="@color/black"
+        android:paddingHorizontal="10dp"
+        android:visibility="visible"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp">
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager2_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:background="@color/white"/>
+
+        <TextView
+            android:id="@+id/tv_countImg"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:text="10/10"
+            android:textSize="16dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@drawable/make_btn_radius_10"
+            android:backgroundTint="#696969"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentEnd="true"
+            android:visibility="visible"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="5dp">
+
+        <ImageButton
+            android:id="@+id/img_btn_favorite"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:background="@android:color/transparent"
+            android:src="@drawable/heart1"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/img_btn_comment"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/img_btn_favorite"
+            android:background="@android:color/transparent"
+            android:src="@drawable/chat"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <ImageButton
+            android:id="@+id/img_btn_share"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/img_btn_comment"
+            android:background="@android:color/transparent"
+            android:src="@drawable/share"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/img_btn_save"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:background="@android:color/transparent"
+            android:src="@drawable/save_1"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tv_showLike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="20 lượt thích, 10 bình luận"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:textColor="#5C5C5C"
+        android:layout_marginHorizontal="10dp"
+        />
+</LinearLayout>
