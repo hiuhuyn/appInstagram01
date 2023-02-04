@@ -1,12 +1,14 @@
 package com.example.instagram01.Fragments.profile
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.*
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,12 +19,14 @@ import com.example.instagram01.Fragments.status.Fragment_showStatus_User
 import com.example.instagram01.R
 import com.example.instagram01.activity.EditProfile_Activity
 import com.example.instagram01.activity.HomePageActivity
+import com.example.instagram01.activity.LoginActivity
 import com.example.instagram01.adapters.CustomeRvAdapter_addFriend_profile
 import com.example.instagram01.adapters.CustomerAdapter_status_profile
 import com.example.instagram01.interfaceFun.OnClickListent
 import com.example.instagram01.model.ImageStaus
 import com.example.instagram01.model.Status
 import com.example.instagram01.model.User
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.util.Calendar
 
 
@@ -81,6 +85,19 @@ class Fragment_profile : Fragment() {
 
         }
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.ic_menus -> {
+                mainActivity.clickBtnOpen()
+            }
+            R.id.ic_add_status -> {
+
+            }
+        }
+        return true
+    }
+
 
     override fun onPause() {
         listStatus.clear()

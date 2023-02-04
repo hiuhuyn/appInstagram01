@@ -1,8 +1,14 @@
 package com.example.instagram01.activity
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.content.SharedPreferences
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MotionEvent
+import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 
@@ -14,6 +20,7 @@ import com.example.instagram01.Fragments.search.Fragment_search
 import com.example.instagram01.R
 import com.example.instagram01.model.User
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class HomePageActivity : AppCompatActivity() {
     private lateinit var nav_bottom:BottomNavigationView
@@ -39,6 +46,37 @@ class HomePageActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+    }
+    fun clickBtnOpen() {
+        var view = layoutInflater.inflate(R.layout.bottom_sheet, null)
+        val bottomSheetDialog = BottomSheetDialog(this)
+        bottomSheetDialog.setContentView(view)
+        bottomSheetDialog.show()
+        val btn_logOut = view.findViewById<Button>(R.id.btn_logOut)
+
+        btn_logOut.setOnTouchListener { v, event ->
+            when(event.action){
+                MotionEvent.ACTION_DOWN -> {
+                    btn_logOut.setBackgroundColor(Color.argb(100, 199,199,199))
+                }
+                MotionEvent.ACTION_UP -> {
+                    btn_logOut.setBackgroundColor(Color.WHITE)
+                    bottomSheetDialog.dismiss()
+                    val myperf: SharedPreferences = getSharedPreferences("dataSave",
+                        AppCompatActivity.MODE_PRIVATE
+                    )
+                    val myEdit: SharedPreferences.Editor = myperf.edit()
+                    myEdit.putBoolean("checkLogin", false)
+                    myEdit.apply()
+                    startActivity(Intent(this, LoginActivity::class.java))
+                    finish()
+                }
+
+
+            }
+            false
+        }
+
     }
 
 

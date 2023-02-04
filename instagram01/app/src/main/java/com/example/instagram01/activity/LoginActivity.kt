@@ -38,10 +38,6 @@ class LoginActivity : AppCompatActivity() {
             sigup.setOnClickListener {
                 startActivity(Intent(this, SigupActivity::class.java))
             }
-
-
-
-
         }
 
     }
