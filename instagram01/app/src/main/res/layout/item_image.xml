@@ -2,13 +2,13 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/backgroud_instagram"
-        android:scaleType="fitCenter"
         android:layout_gravity="center"
-        />
+        android:scaleType="centerCrop"
+        android:src="@drawable/avt_test" />
 
 </FrameLayout>

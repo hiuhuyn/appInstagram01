@@ -9,8 +9,10 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.widget.ViewPager2
+import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.instagram01.R
 import com.example.instagram01.model.*
+import me.relex.circleindicator.CircleIndicator3
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.logging.SimpleFormatter
@@ -104,11 +106,20 @@ class CustemerAdapter_status(val fragmentActivity: FragmentActivity, val listSta
         if (listImages.size <=1){
             tv_countImg.visibility = View.GONE
         }else{
-            tv_countImg.setText("${1}/${listImages.size}")
+            tv_countImg.visibility = View.VISIBLE
         }
-
-
         viewPager2_img.adapter = ViewPageAdapter_iamgeStatus(fragment, listImages)
+        val myPageChangeCallback = MyPageChangeCallback(object : MoveItemViewPage{
+            override fun MoveItem(position: Int) {
+                tv_countImg.setText("${position+1}/${listImages.size}")
+            }
+
+        })
+        viewPager2_img.registerOnPageChangeCallback(myPageChangeCallback)
+        val indicator = view.findViewById<CircleIndicator3>(R.id.circle_indicator3)
+        indicator.setViewPager(viewPager2_img)
+
+
 
 
         var isFavorite: Boolean = false // sau chuyển thành kiểm tra từ dữ liệu
