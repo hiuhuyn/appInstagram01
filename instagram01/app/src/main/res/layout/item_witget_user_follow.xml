@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp"
+    android:background="@color/white">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_avt"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:cardCornerRadius="50dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true">
+        <ImageView
+            android:id="@+id/img_avt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/avt_test"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toEndOf="@+id/card_avt"
+        android:layout_toStartOf="@+id/card_follow"
+        android:orientation="vertical"
+        android:paddingHorizontal="10dp"
+        android:weightSum="2">
+        <TextView
+            android:id="@+id/tv_userName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="gyn.huyn"
+            android:textSize="17dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            />
+        <TextView
+            android:id="@+id/tv_fullName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Nguyễn Min Quan"
+            android:textSize="17dp"
+            android:gravity="center_vertical"
+            />
+
+
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_follow"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        app:cardCornerRadius="20dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true">
+        <Button
+            android:id="@+id/btn_follow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue"
+            android:text="Theo dõi"
+            android:textSize="15dp"
+            android:textColor="@color/white" />
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

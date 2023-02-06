@@ -30,27 +30,25 @@ class CustomeRvAdapter_addFriend_profile(val array: ArrayList<User>, val rvInter
 
             avt.setImageResource(array[position].Avt)
             userName.setText("${array[position].UserName}")
-
             var colorBtn: Int = 0
             var colorText: Int = 0
+            var isFollow = false
             btn_follow.setOnClickListener {
-                var bool: Boolean = true
-                if(btn_follow.text.equals("Theo dõi")){ // lúc click mà nút đang ở trạng thái theo dõi thì thay đổi
+                if(!isFollow){ // lúc click mà nút đang ở trạng thái theo dõi thì thay đổi
                     btn_follow.setText("Đang theo dõi")
                     colorBtn = ContextCompat.getColor(context, R.color.greyish)
                     colorText = ContextCompat.getColor(context, R.color.black)
                     btn_follow.setBackgroundColor(colorBtn)
                     btn_follow.setTextColor(colorText)
-                    bool = true // follow
+                    isFollow = true
                 }else{
                     btn_follow.setText("Theo dõi")
                     colorBtn = ContextCompat.getColor(context, R.color.blue)
                     colorText = ContextCompat.getColor(context, R.color.white)
                     btn_follow.setBackgroundColor(colorBtn)
                     btn_follow.setTextColor(colorText)
-                    bool = false // unFollow
+                    isFollow = false
                 }
-                rvInterface.OnClickFollow(position, bool)
             }
             img_close.setOnClickListener {
                 rvInterface.OnClickClose(position)
