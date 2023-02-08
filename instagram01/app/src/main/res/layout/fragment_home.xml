@@ -6,9 +6,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     tools:context=".Fragments.home.Fragment_home">
+    <Button
+        android:id="@+id/btn_messenger"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="message"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/view_home"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/btn_messenger">
     </androidx.recyclerview.widget.RecyclerView>
 </RelativeLayout>

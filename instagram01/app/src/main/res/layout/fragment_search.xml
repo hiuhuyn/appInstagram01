@@ -6,5 +6,9 @@
     android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragments.search.Fragment_search">
+    <ListView
+        android:id="@+id/rv_Search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>

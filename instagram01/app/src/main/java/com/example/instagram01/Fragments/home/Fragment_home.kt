@@ -1,16 +1,22 @@
 package com.example.instagram01.Fragments.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.example.instagram01.R
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.instagram01.activity.EditProfile_Activity
 import com.example.instagram01.activity.HomePageActivity
+import com.example.instagram01.activity.MessagerActivity
 
 
 class Fragment_home : Fragment() {
     private lateinit var mainActivity: HomePageActivity
+
+    private lateinit var btn_messenger: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +36,9 @@ class Fragment_home : Fragment() {
         mainActivity.toolbar.title = "Instagram"
         mainActivity.toolbar.navigationIcon = null
 
+        init(view)
+        addEvent(view, container)
+
         var recyclerView: RecyclerView? = null
         recyclerView = view.findViewById(R.id.view_home)
         val linearLayoutManager = LinearLayoutManager(context)
@@ -45,7 +54,28 @@ class Fragment_home : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.ic_messenger -> {
+                val i = Intent(activity, MessagerActivity::class.java)
+                startActivity(i)
+            }
+            R.id.ic_add -> {
+
+            }
+        }
         return true
+    }
+    private fun init(view: View?) {
+        if (view != null) {
+            mainActivity = activity as HomePageActivity
+            btn_messenger = view.findViewById(R.id.btn_messenger)
+        }
+    }
+    private fun addEvent(view: View, container: ViewGroup?) {
+        btn_messenger.setOnClickListener {
+            val i = Intent(activity, MessagerActivity::class.java)
+            startActivity(i)
+        }
     }
 
     override fun onPause() {
