@@ -9,8 +9,10 @@ import com.example.instagram01.model.User
 import java.util.*
 import kotlin.collections.ArrayList
 
-class CustemerAdapter_status_Search(val activity: HomePageActivity, var array:ArrayList<User> , var arrayfilter:ArrayList<User>)
+class CustemerAdapter_status_Search(val activity: HomePageActivity, var array:ArrayList<User>)
     : ArrayAdapter<User>(activity, R.layout.item_witget_user_search),Filterable {
+
+    lateinit var arrayfilter:ArrayList<User>
 
     fun setData(array: ArrayList<User>){
         this.arrayfilter = array
@@ -44,15 +46,15 @@ class CustemerAdapter_status_Search(val activity: HomePageActivity, var array:Ar
                     filterResults.values = arrayfilter
                 }else{
                     var searchChr = charsequence.toString().lowercase(Locale.ROOT)
-                    val arrayfilter = ArrayList<User>()
+                    val user = ArrayList<User>()
 
                     for (item in arrayfilter){
                         if (item.UserName.contains(searchChr)||item.FullName.contains(searchChr)){
-                            arrayfilter.add(item)
+                            user.add(item)
                         }
                     }
-                    filterResults.count = arrayfilter.size
-                    filterResults.values = arrayfilter
+                    filterResults.count = user.size
+                    filterResults.values = user
                 }
                 return filterResults
             }

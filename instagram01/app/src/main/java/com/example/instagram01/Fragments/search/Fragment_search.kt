@@ -40,7 +40,7 @@ class Fragment_search : Fragment() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(filterString: String?): Boolean {
                 adapter.filter.filter(filterString)
-                return false
+                return true
             }
             override fun onQueryTextChange(filterString: String?): Boolean {
                 adapter.filter.filter(filterString)
@@ -60,7 +60,7 @@ class Fragment_search : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_search, container, false)
         mainActivity = activity as HomePageActivity
-        adapter = CustemerAdapter_status_Search(mainActivity,listUser,listUser )
+        adapter = CustemerAdapter_status_Search(mainActivity,listUser )
 
         lv_user = view.findViewById(R.id.rv_Search)
         lv_user.adapter = adapter
@@ -71,7 +71,7 @@ class Fragment_search : Fragment() {
     private fun addData() {
 
         listUser.add((User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "gynhuyn", "des", R.drawable.user )))
-        listUser.add((User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "ha", "des", R.drawable.add )))
+        listUser.add((User("Quan@1", 111, true, "29/11/22", "yutar", "ha", "des", R.drawable.add )))
         listUser.add((User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "ssss", "des", R.drawable.ic_launcher_background )))
         listUser.add((User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "saaa", "des", androidx.appcompat.R.drawable.abc_ic_ab_back_material )))
         listUser.add((User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "aaaa", "des", R.drawable.home )))
