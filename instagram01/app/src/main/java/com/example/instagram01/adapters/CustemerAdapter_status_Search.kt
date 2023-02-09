@@ -10,7 +10,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class CustemerAdapter_status_Search(val activity: HomePageActivity, var array:ArrayList<User>)
-    : ArrayAdapter<User>(activity, R.layout.item_witget_user_search),Filterable {
+    : ArrayAdapter<User>(activity, R.layout.item_witget_user_follow),Filterable {
 
     lateinit var arrayfilter:ArrayList<User>
 
@@ -24,14 +24,17 @@ class CustemerAdapter_status_Search(val activity: HomePageActivity, var array:Ar
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        val view = activity.layoutInflater.inflate(R.layout.item_witget_user_search, parent, false)
+        val view = activity.layoutInflater.inflate(R.layout.item_witget_user_follow, parent, false)
         val img_avt = view.findViewById<ImageView>(R.id.img_avt)
         val tv_userName = view.findViewById<TextView>(R.id.tv_userName)
         val tv_fullName = view.findViewById<TextView>(R.id.tv_fullName)
+        val btn = view.findViewById<Button>(R.id.btn_follow)
 
         img_avt.setImageResource(array[position].Avt)
         tv_userName.setText(array[position].UserName)
         tv_fullName.setText(array[position].FullName)
+
+        btn.setVisibility(View.GONE)
 
         return view
     }
@@ -63,7 +66,6 @@ class CustemerAdapter_status_Search(val activity: HomePageActivity, var array:Ar
                 array = filterResults!!.values as ArrayList<User>
                 notifyDataSetChanged()
             }
-
         }
     }
 }

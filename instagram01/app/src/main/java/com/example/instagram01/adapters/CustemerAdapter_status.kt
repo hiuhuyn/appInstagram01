@@ -2,10 +2,7 @@ package com.example.instagram01.adapters
 
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.widget.ViewPager2
@@ -17,11 +14,19 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.logging.SimpleFormatter
 
-class CustemerAdapter_status(val fragmentActivity: FragmentActivity, val listStatus: ArrayList<Status>, var fragment: Fragment): ArrayAdapter<Status>(fragmentActivity, R.layout.item_witget_status) {
+class CustemerAdapter_status(val fragmentActivity: FragmentActivity, val listStatus: ArrayList<Status>, var fragment: Fragment): ArrayAdapter<Status>(fragmentActivity, R.layout.item_witget_status),
+    Filterable {
+
     private var listImages = ArrayList<ImageStaus>()
     private var listLike = ArrayList<LikeStatus>()
     private var listComment= ArrayList<CommentStatus>()
     private var user: User = User()
+    lateinit var arrayfilter:ArrayList<Status>
+
+    fun setData(array: ArrayList<User>){
+        this.arrayfilter = listStatus
+        notifyDataSetChanged()
+    }
 
 
     override fun getCount(): Int {
@@ -162,6 +167,4 @@ class CustemerAdapter_status(val fragmentActivity: FragmentActivity, val listSta
 
         return view
     }
-
-
 }

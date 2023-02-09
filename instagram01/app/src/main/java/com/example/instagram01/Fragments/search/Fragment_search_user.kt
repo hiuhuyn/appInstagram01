@@ -1,26 +1,29 @@
-package com.example.instagram01.Fragments.follow
+package com.example.instagram01.Fragments.search
 
+import android.app.SearchManager
+import android.content.Context
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ListView
 import androidx.appcompat.widget.SearchView
+import com.example.instagram01.Fragments.follow.Fragment_followed
 import com.example.instagram01.R
 import com.example.instagram01.activity.HomePageActivity
+import com.example.instagram01.adapters.CustemerAdapter_status_Search
 import com.example.instagram01.adapters.CustomerAdapter_userFollow
 import com.example.instagram01.model.User
-class Fragment_followed : Fragment() {
-    private lateinit var lv_followed: ListView
-    private lateinit var search_followed: SearchView
-    private lateinit var homePageActivity: HomePageActivity
+
+class Fragment_search_user : Fragment() {
+    private lateinit var lv_user: ListView
+    private lateinit var mainActivity: HomePageActivity
+    private lateinit var adapter : CustemerAdapter_status_Search
     private val listUser = ArrayList<User>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-
+            val searchManager: SearchManager = mainActivity.getSystemService(Context.SEARCH_SERVICE) as SearchManager
         }
     }
 
@@ -29,13 +32,13 @@ class Fragment_followed : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_followed, container, false)
-        lv_followed = view.findViewById(R.id.lv_followed)
-        search_followed = view.findViewById(R.id.search_followed)
-        homePageActivity = activity as HomePageActivity
+        val view = inflater.inflate(R.layout.fragment_search_user, container, false)
+        lv_user = view.findViewById(R.id.lv_search_user)
+        mainActivity = activity as HomePageActivity
         addData()
-        val adapter = CustomerAdapter_userFollow(homePageActivity, listUser)
-        lv_followed.adapter = adapter
+        adapter = CustemerAdapter_status_Search(mainActivity,listUser )
+        lv_user.adapter = adapter
+        adapter.setData(listUser)
 
         return view
     }
