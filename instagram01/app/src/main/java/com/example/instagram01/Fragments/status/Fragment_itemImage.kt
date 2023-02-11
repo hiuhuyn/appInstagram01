@@ -1,5 +1,6 @@
 package com.example.instagram01.Fragments.status
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,12 +15,12 @@ private const val ARG_IMAGE = "image"
 
 
 class Fragment_itemImage : Fragment() {
-    private var image: Int = R.drawable.avt_test
+    private var image: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            image = it.getInt(ARG_IMAGE)
+            image = it.getString(ARG_IMAGE,"")
 
         }
     }
@@ -31,16 +32,16 @@ class Fragment_itemImage : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.item_image, container, false)
         val imageView = view.findViewById<ImageView>(R.id.imageView)
-        imageView.setImageResource(image)
+        imageView.setImageURI(Uri.parse(image))
         return view
     }
 
     companion object {
         @JvmStatic
-        fun newInstance(image: Int) =
+        fun newInstance(image: String) =
             Fragment_itemImage().apply {
                 arguments = Bundle().apply {
-                    putInt(ARG_IMAGE, image)
+                    putString(ARG_IMAGE, image)
                 }
             }
     }

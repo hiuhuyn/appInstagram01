@@ -1,9 +1,13 @@
 package com.example.instagram01.model
 
+import android.net.Uri
+import android.os.Parcelable
 import androidx.core.content.ContextCompat
 import com.example.instagram01.R
+import com.example.instagram01.reusable_classes.DataTest
+import java.io.Serializable
 
-class User: java.io.Serializable {
+class User {
     private var email: String = "" // khóa chính
     private var phoneNumber: Short = 0
     private var sex: Boolean = true
@@ -11,7 +15,7 @@ class User: java.io.Serializable {
     private var fullName: String = ""
     private var userName: String = "" // độc nhất
     private var desc: String = ""
-    private var avt: Int = R.drawable.avt_test
+    private var avt: Uri = DataTest().imageUriTest(R.drawable.avt_test)
 
     constructor()
     constructor(
@@ -22,7 +26,7 @@ class User: java.io.Serializable {
         fullName: String,
         userName: String,
         desc: String,
-        avt: Int
+        avt: Uri
     ) {
         this.email = email
         this.phoneNumber = phoneNumber
@@ -61,7 +65,7 @@ class User: java.io.Serializable {
         get() { return desc}
         set(value) { desc = value}
 
-    public var Avt: Int
+    public var Avt: Uri
         get() { return avt}
         set(value) { avt = value}
 

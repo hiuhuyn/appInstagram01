@@ -30,7 +30,7 @@ class CustemerAdapter_status_Search(val activity: HomePageActivity, var array:Ar
         val tv_fullName = view.findViewById<TextView>(R.id.tv_fullName)
         val btn = view.findViewById<Button>(R.id.btn_follow)
 
-        img_avt.setImageResource(array[position].Avt)
+        img_avt.setImageURI(array[position].Avt)
         tv_userName.setText(array[position].UserName)
         tv_fullName.setText(array[position].FullName)
 
