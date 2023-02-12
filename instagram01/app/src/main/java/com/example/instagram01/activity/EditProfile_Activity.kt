@@ -10,9 +10,10 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.example.instagram01.R
 import com.example.instagram01.model.User
+import com.example.instagram01.reusable_classes.DataTest
 
 class EditProfile_Activity : AppCompatActivity() {
-    private var user: User = User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "rrrrr", "des", R.drawable.avt_test )
+    private var user: User = User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "rrrrr", "des", DataTest().imageUriTest(R.drawable.avt_test) )
 
     private lateinit var toolbar: Toolbar
     private lateinit var imgAvt: ImageView
@@ -25,12 +26,6 @@ class EditProfile_Activity : AppCompatActivity() {
     private lateinit var edt_desc: EditText
 
     private fun init(){
-        val i = intent
-
-        if (i.getSerializableExtra("user") != null){
-            user = i.getSerializableExtra("user") as User
-        }
-
         toolbar = findViewById(R.id.toolbar_editProfile)
         imgAvt = findViewById(R.id.img_avt)
         radioGroup = findViewById(R.id.radioGroup_sex)
@@ -52,7 +47,7 @@ class EditProfile_Activity : AppCompatActivity() {
     }
 
     private fun setDataView() {
-        imgAvt.setImageResource(user.Avt)
+        imgAvt.setImageURI(user.Avt)
         edt_fullName.setText(user.FullName)
         edt_userName.setText(user.UserName)
         edt_email.setText(user.Email)
@@ -66,7 +61,7 @@ class EditProfile_Activity : AppCompatActivity() {
         }
     }
     private fun getDataView(){
-        user.Avt = imgAvt.imageAlpha
+        user.Avt = DataTest().imageUriTest(R.drawable.avt_test) //
         user.FullName = edt_fullName.text.toString()
         user.UserName = edt_userName.text.toString()
         user.Email = edt_email.text.toString()
@@ -78,7 +73,7 @@ class EditProfile_Activity : AppCompatActivity() {
             when(it.itemId){
                 R.id.ic_save_profile -> {
                     getDataView()
-                    Toast.makeText(this, "${user.toString()}", Toast.LENGTH_SHORT).show()
+
                     // gửi dữ liệu lên data rồi quay lại activity_main
                     finish()
                 }

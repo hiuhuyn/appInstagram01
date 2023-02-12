@@ -6,10 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import com.example.instagram01.R
+import com.example.instagram01.model.User
 
 class LoginActivity : AppCompatActivity() {
     private var check: Boolean = false
+    private val user = User()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // chưa khởi tạo layout
@@ -30,9 +34,14 @@ class LoginActivity : AppCompatActivity() {
             val sigup = findViewById<TextView>(R.id.tv_sigup)
             var btn_login = findViewById<Button>(R.id.btn_login)
             btn_login.setOnClickListener {
-                check = true
-                startActivity(Intent(this, HomePageActivity::class.java))
-                finish()
+                if (checkUser()){
+                    check = true
+                    val intent = Intent(this, HomePageActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }else{
+                    Toast.makeText(this, "Email hoặc mật khẩu không chính xác, vui lòng nhập lại!", Toast.LENGTH_SHORT).show()
+                }
             }
 
             sigup.setOnClickListener {
@@ -41,12 +50,18 @@ class LoginActivity : AppCompatActivity() {
         }
 
     }
+
+    private fun checkUser(): Boolean {
+        user.UserName = "gynHin" // gán tạm
+        return true
+    }
+
     override fun onPause() {
         super.onPause()
         val myperf: SharedPreferences = getSharedPreferences("dataSave", MODE_PRIVATE)
         val myEdit: SharedPreferences.Editor = myperf.edit()
         myEdit.putBoolean("checkLogin", check)
+        myEdit.putString("userName", user.UserName)
         myEdit.apply()
-
     }
 }

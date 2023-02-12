@@ -1,5 +1,6 @@
 package com.example.instagram01.adapters
 
+import android.net.Uri
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
@@ -9,6 +10,7 @@ import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.instagram01.R
 import com.example.instagram01.model.*
+import com.example.instagram01.reusable_classes.DataTest
 import me.relex.circleindicator.CircleIndicator3
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -32,6 +34,8 @@ class CustemerAdapter_status(val fragmentActivity: FragmentActivity, val listSta
     override fun getCount(): Int {
         return listStatus.size
     }
+
+
     private fun createData(position: Int){
         listImages.clear()
         listLike.clear()
@@ -46,15 +50,13 @@ class CustemerAdapter_status(val fragmentActivity: FragmentActivity, val listSta
          */
 
         // dũ liệu ảo
-        user = User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "gynhuyn", "des",
-            R.drawable.ic_launcher_background
-        )
-        listImages.add(ImageStaus(0, 0, R.drawable.backgroud_instagram))
-        listImages.add(ImageStaus(1, 1, R.drawable.avt_test))
-        listImages.add(ImageStaus(2, 2, R.drawable.backgroud_btn))
-        listImages.add(ImageStaus(3, 3, R.drawable.logo_fb))
-        listImages.add(ImageStaus(4, 4, R.drawable.backgroud_instagram))
-        listImages.add(ImageStaus(5, 5, R.drawable.avt_test))
+        user = User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "gynhuyn", "des", DataTest().imageUriTest(R.drawable.add))
+        listImages.add(ImageStaus(0, 0, DataTest().imageUriTest(R.drawable.add)))
+        listImages.add(ImageStaus(1, 1, DataTest().imageUriTest(R.drawable.avt_test)))
+        listImages.add(ImageStaus(2, 2, DataTest().imageUriTest(R.drawable.ic_close_x)))
+        listImages.add(ImageStaus(3, 3, DataTest().imageUriTest(R.drawable.add_friend1)))
+        listImages.add(ImageStaus(4, 4, DataTest().imageUriTest(R.drawable.add_friend2)))
+        listImages.add(ImageStaus(5, 5, DataTest().imageUriTest(R.drawable.messenger)))
 
         listLike.add(LikeStatus(1, listStatus[position].IdStatus, "", Calendar.getInstance().time ))
         listLike.add(LikeStatus(2, listStatus[position].IdStatus, "", Calendar.getInstance().time ))
@@ -84,6 +86,7 @@ class CustemerAdapter_status(val fragmentActivity: FragmentActivity, val listSta
 
     }
 
+
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         createData(position)
 
@@ -100,7 +103,7 @@ class CustemerAdapter_status(val fragmentActivity: FragmentActivity, val listSta
         val img_btn_save = view.findViewById<ImageButton>(R.id.img_btn_save)
         val tv_showLike = view.findViewById<TextView>(R.id.tv_showLike)
 
-        img_avt.setImageResource(user.Avt)
+        img_avt.setImageURI(user.Avt)
         tv_userName.setText(user.UserName)
         var dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
         tv_time.setText(dateFormat.format(listStatus[position].PostTime))

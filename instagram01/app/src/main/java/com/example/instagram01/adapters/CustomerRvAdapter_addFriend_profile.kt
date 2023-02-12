@@ -28,7 +28,7 @@ class CustomeRvAdapter_addFriend_profile(val array: ArrayList<User>, val rvInter
             val btn_follow = this.findViewById<Button>(R.id.btn_follow)
             val img_close = this.findViewById<ImageView>(R.id.img_close)
 
-            avt.setImageResource(array[position].Avt)
+            avt.setImageURI(array[position].Avt)
             userName.setText("${array[position].UserName}")
             var colorBtn: Int = 0
             var colorText: Int = 0

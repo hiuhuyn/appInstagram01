@@ -58,8 +58,9 @@
             android:background="@color/blue"
             android:text="Theo dõi"
             android:textColor="#FFFFFF"
-            android:textSize="13dp"
+            android:textSize="15dp"
             android:textStyle="bold"
+            android:textAllCaps="false"
             tools:ignore="TextContrastCheck,TouchTargetSizeCheck" />
 
     </androidx.cardview.widget.CardView>

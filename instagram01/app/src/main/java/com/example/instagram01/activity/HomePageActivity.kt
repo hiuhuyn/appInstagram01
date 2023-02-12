@@ -19,6 +19,7 @@ import com.example.instagram01.Fragments.profile.Fragment_profile
 import com.example.instagram01.Fragments.search.Fragment_search
 import com.example.instagram01.R
 import com.example.instagram01.model.User
+import com.example.instagram01.reusable_classes.DataTest
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
@@ -78,6 +79,10 @@ class HomePageActivity : AppCompatActivity() {
         }
 
     }
+    fun openAddPost(){
+        val intent = Intent(this, ActivityAddPost::class.java)
+        startActivity(intent)
+    }
 
 
 
@@ -101,7 +106,7 @@ class HomePageActivity : AppCompatActivity() {
                 }
                 R.id.nav_profile -> {
                     tag = "profile"
-                    selectorFragment = Fragment_profile.newInstance(true, User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "jjjjj", "des", R.drawable.avt_test))
+                    selectorFragment = Fragment_profile.newInstance(true, "")
                 }
             }
             supportFragmentManager.beginTransaction().replace(

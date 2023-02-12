@@ -25,7 +25,7 @@ class ViewPageAdapter_iamgeStatus(activity: Fragment, val list: ArrayList<ImageS
     }
 
     override fun createFragment(position: Int): Fragment {
-        return Fragment_itemImage.newInstance(list[position].SrcImg)
+        return Fragment_itemImage.newInstance(list[position].SrcImg.toString())
     }
 
 }

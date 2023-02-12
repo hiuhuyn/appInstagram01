@@ -2,6 +2,7 @@ package com.example.instagram01.Fragments.profile
 
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.*
@@ -26,6 +27,7 @@ import com.example.instagram01.interfaceFun.OnClickListent
 import com.example.instagram01.model.ImageStaus
 import com.example.instagram01.model.Status
 import com.example.instagram01.model.User
+import com.example.instagram01.reusable_classes.DataTest
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.util.Calendar
 
@@ -72,9 +74,25 @@ class Fragment_profile : Fragment() {
         setHasOptionsMenu(true)
         arguments?.let {
             isUserMain = it.getBoolean(ARG_IS_USER_MAIN)
-            user = it.getSerializable(ARG_IS_USER_OTHER) as User
-
+            user.UserName = it.getString(ARG_IS_USER_OTHER).toString()
         }
+
+    }
+
+    private fun setUser(userName: String) {
+        // lấy dữ liệu qua userName
+        if(isUserMain){
+            val myperf: SharedPreferences = mainActivity.getSharedPreferences("dataSave",
+                AppCompatActivity.MODE_PRIVATE
+            )
+            val un = myperf.getString("userName",userName).toString()
+            user = User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", un, "des", DataTest().imageUriTest(R.drawable.user ))
+
+        }else{
+            user = User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", userName, "des", DataTest().imageUriTest(R.drawable.user ))
+        }
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -92,32 +110,18 @@ class Fragment_profile : Fragment() {
                 mainActivity.clickBtnOpen()
             }
             R.id.ic_add_status -> {
-
+                mainActivity.openAddPost()
             }
         }
         return true
     }
 
-
-    override fun onPause() {
-        listStatus.clear()
-        listUser.clear()
-        listImages.clear()
-        mainActivity.toolbar.navigationIcon = null
-        mainActivity.toolbar.title =  ""
-        super.onPause()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
     companion object {
         @JvmStatic
-        fun newInstance(isUserMain: Boolean, user: User) = Fragment_profile().apply {
+        fun newInstance(isUserMain: Boolean, userName: String) = Fragment_profile().apply {
             arguments = Bundle().apply {
                 putBoolean(ARG_IS_USER_MAIN, isUserMain)
-                putSerializable(ARG_IS_USER_OTHER, user)
+                putString(ARG_IS_USER_OTHER, userName)
 
             }
         }
@@ -133,6 +137,7 @@ class Fragment_profile : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
         init(view)
+        setUser(user.UserName)
         dataArray()
         setProfile()
         setAdapter_status(listUser, container)
@@ -141,9 +146,11 @@ class Fragment_profile : Fragment() {
 
         mainActivity.toolbar.title = user.UserName
 
+
         if (isUserMain){
             linearLayout_follow_messenger.visibility = View.GONE
             btn_editProfile.visibility = View.VISIBLE
+            mainActivity.toolbar.navigationIcon = null
         }else{
             btn_editProfile.visibility = View.GONE
             linearLayout_follow_messenger.visibility = View.VISIBLE
@@ -190,7 +197,7 @@ class Fragment_profile : Fragment() {
     private fun setProfile() {
         txt_name_profile.setText("${user.FullName}")
         txt_desc_profile.setText("${user.Desc}")
-        img_avt_profile.setImageResource(user.Avt)
+        img_avt_profile.setImageURI(user.Avt)
     }
 
     private fun addEvent(view: View, container: ViewGroup?) {
@@ -259,7 +266,7 @@ class Fragment_profile : Fragment() {
     }
     private fun setAdapter_status(array: ArrayList<User>, container: ViewGroup?){
         val listStatusChild = listStatus
-        val customerAdapter_status_profile = CustomerAdapter_status_profile(container!!.context as FragmentActivity, listStatusChild, listImages, object : OnClickListent {
+        val customerAdapter_status_profile = CustomerAdapter_status_profile(container!!.context as FragmentActivity, listStatusChild, object : OnClickListent {
             override fun OnClickFollow(pos: Int, bool: Boolean) {
                 TODO("Not yet implemented")
             }
@@ -274,8 +281,6 @@ class Fragment_profile : Fragment() {
         })
         gv_listStatus.adapter = customerAdapter_status_profile
     }
-
-
     private fun setAdapter_users(array: ArrayList<User>, container: ViewGroup?){
         val array2 = array
         val adt= CustomeRvAdapter_addFriend_profile(array2, object : OnClickListent {
@@ -290,7 +295,7 @@ class Fragment_profile : Fragment() {
             override fun OnClickView(pos: Int) {
                 parentFragmentManager.beginTransaction().replace(
                     container!!.id,
-                    newInstance(false, array2[pos])
+                    newInstance(false, array2[pos].UserName)
                 ).addToBackStack("tag_${array2[pos].UserName}").commit()
             }
         })
@@ -303,6 +308,10 @@ class Fragment_profile : Fragment() {
     }
 
     private fun dataArray(){
+        listStatus.clear()
+        listImages.clear()
+        listUser.clear()
+
         listStatus.add(Status(0, "gyn", "no", Calendar.getInstance().time))
         listStatus.add(Status(1, "gyn", "hehe", Calendar.getInstance().time))
         listStatus.add(Status(2, "gyn", "ass2", Calendar.getInstance().time))
@@ -310,22 +319,14 @@ class Fragment_profile : Fragment() {
         listStatus.add(Status(4, "gyn", "ass2",Calendar.getInstance().time ))
         listStatus.add(Status(5, "gyn", "ass2", Calendar.getInstance().time ))
 
-
-        listImages.add(ImageStaus(0, 0, R.drawable.add))
-        listImages.add(ImageStaus(1, 1, R.drawable.avt_test))
-        listImages.add(ImageStaus(2, 2, R.drawable.ic_close_x))
-        listImages.add(ImageStaus(3, 3, R.drawable.add_friend1))
-        listImages.add(ImageStaus(4, 4, R.drawable.add_friend2))
-        listImages.add(ImageStaus(5, 5, R.drawable.messenger))
-
-        listUser.add((User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "gynhuyn", "des", R.drawable.user )))
-        listUser.add((User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "ha", "des", R.drawable.add )))
-        listUser.add((User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "ssss", "des", R.drawable.ic_launcher_background )))
-        listUser.add((User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "saaa", "des", androidx.appcompat.R.drawable.abc_ic_ab_back_material )))
-        listUser.add((User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "aaaa", "des", R.drawable.home )))
-        listUser.add((User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "rrrrr", "des", R.drawable.avt_test )))
-        listUser.add((User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "jjjjj", "des", R.drawable.profile_icon )))
-        listUser.add((User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "jjjjj", "des", R.drawable.avt_test)))
+        listUser.add((User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "gynhuyn", "des", DataTest().imageUriTest(R.drawable.user ))))
+        listUser.add((User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "ha", "des", DataTest().imageUriTest(R.drawable.user ))))
+        listUser.add((User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "ssss", "des", DataTest().imageUriTest(R.drawable.user ))))
+        listUser.add((User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "saaa", "des", DataTest().imageUriTest(R.drawable.user ))))
+        listUser.add((User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "aaaa", "des", DataTest().imageUriTest(R.drawable.user ))))
+        listUser.add((User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "rrrrr", "des", DataTest().imageUriTest(R.drawable.user ))))
+        listUser.add((User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "jjjjj", "des", DataTest().imageUriTest(R.drawable.user ))))
+        listUser.add((User("Quan@1", 111, true, "29/11/22", "Nguyễn Minh Quân", "jjjjj", "des", DataTest().imageUriTest(R.drawable.user ))))
 
     }
 

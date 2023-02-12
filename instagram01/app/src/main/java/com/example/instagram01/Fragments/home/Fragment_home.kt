@@ -60,7 +60,7 @@ class Fragment_home : Fragment() {
                 startActivity(i)
             }
             R.id.ic_add -> {
-
+                mainActivity.openAddPost()
             }
         }
         return true
