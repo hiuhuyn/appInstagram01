@@ -37,10 +37,10 @@ class Fragment_home : Fragment() {
         mainActivity.toolbar.navigationIcon = null
 
         init(view)
-        addEvent(view, container)
+        //addEvent(view, container)
 
         var recyclerView: RecyclerView? = null
-        recyclerView = view.findViewById(R.id.view_home)
+        recyclerView = view.findViewById(R.id.posts_recycler_view)
         val linearLayoutManager = LinearLayoutManager(context)
         linearLayoutManager.reverseLayout = true
         linearLayoutManager.stackFromEnd
@@ -68,14 +68,10 @@ class Fragment_home : Fragment() {
     private fun init(view: View?) {
         if (view != null) {
             mainActivity = activity as HomePageActivity
-            btn_messenger = view.findViewById(R.id.btn_messenger)
         }
     }
     private fun addEvent(view: View, container: ViewGroup?) {
-        btn_messenger.setOnClickListener {
-            val i = Intent(activity, MessagerActivity::class.java)
-            startActivity(i)
-        }
+
     }
 
     override fun onPause() {

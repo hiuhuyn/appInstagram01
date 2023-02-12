@@ -39,8 +39,8 @@ class Fragment_search_status : Fragment() {
         lv_status = view.findViewById(R.id.lv_status)
         homePageActivity = activity as HomePageActivity
         addData()
-        val adapter = CustemerAdapter_status(homePageActivity, listStatus, this)
-        lv_status.adapter = adapter
+        val adapterr = CustemerAdapter_status(homePageActivity, listStatus, this)
+        lv_status.adapter = adapterr
 
         return view
     }

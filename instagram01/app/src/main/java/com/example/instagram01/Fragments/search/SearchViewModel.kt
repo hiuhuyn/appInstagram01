@@ -6,10 +6,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class SearchViewModel : ViewModel() {
-    private val mutableSelectedItem = MutableLiveData<ClipData.Item>()
-    val selectedItem: LiveData<ClipData.Item> get() = mutableSelectedItem
+    private val query = MutableLiveData<String>()
 
-    fun selectItem(item: ClipData.Item) {
-        mutableSelectedItem.value = item
+    fun setQuery(queryData: String) {
+        query.value = queryData
+    }
+
+    fun getQuery(): LiveData<String>? {
+        return query
     }
 }

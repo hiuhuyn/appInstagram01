@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
-    tools:context=".Fragments.home.Fragment_home">
-    <Button
-        android:id="@+id/btn_messenger"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="message"/>
+    android:orientation="vertical">
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/view_home"
+        android:id="@+id/posts_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/btn_messenger">
+        android:layout_height="match_parent">
     </androidx.recyclerview.widget.RecyclerView>
-</RelativeLayout>
+
+</LinearLayout>
