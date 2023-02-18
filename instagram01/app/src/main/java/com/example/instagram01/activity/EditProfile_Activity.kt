@@ -6,7 +6,6 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.RadioGroup
 import android.widget.RadioGroup.OnCheckedChangeListener
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.example.instagram01.R
 import com.example.instagram01.model.User

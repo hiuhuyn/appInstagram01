@@ -6,8 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.instagram01.R
 import com.example.instagram01.activity.HomePageActivity
 import com.example.instagram01.adapters.CustomerAdapter_userFollow

@@ -1,11 +1,8 @@
 package com.example.instagram01.model
 
 import android.net.Uri
-import android.os.Parcelable
-import androidx.core.content.ContextCompat
 import com.example.instagram01.R
 import com.example.instagram01.reusable_classes.DataTest
-import java.io.Serializable
 
 class User {
     private var email: String = "" // khóa chính

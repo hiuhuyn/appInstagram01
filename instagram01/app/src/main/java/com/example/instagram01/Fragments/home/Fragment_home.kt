@@ -1,9 +1,11 @@
 package com.example.instagram01.Fragments.home
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.Button
+import android.widget.ListView
 import androidx.fragment.app.Fragment
 import com.example.instagram01.R
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,12 +13,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.instagram01.activity.EditProfile_Activity
 import com.example.instagram01.activity.HomePageActivity
 import com.example.instagram01.activity.MessagerActivity
+import com.example.instagram01.adapters.CustemerAdapter_status
+import com.example.instagram01.model.Status
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class Fragment_home : Fragment() {
     private lateinit var mainActivity: HomePageActivity
+    private lateinit var lv_status: ListView
+    private var listStatus = ArrayList<Status>()
 
-    private lateinit var btn_messenger: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +33,7 @@ class Fragment_home : Fragment() {
         }
 
     }
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,13 +46,10 @@ class Fragment_home : Fragment() {
 
         init(view)
         //addEvent(view, container)
-
-        var recyclerView: RecyclerView? = null
-        recyclerView = view.findViewById(R.id.posts_recycler_view)
-        val linearLayoutManager = LinearLayoutManager(context)
-        linearLayoutManager.reverseLayout = true
-        linearLayoutManager.stackFromEnd
-        recyclerView.layoutManager = linearLayoutManager
+        lv_status = view.findViewById(R.id.list_view_status_home)
+        addData()
+        val adapterr = CustemerAdapter_status(mainActivity, listStatus, this)
+        lv_status.adapter = adapterr
 
         return view
     }
@@ -76,6 +81,16 @@ class Fragment_home : Fragment() {
 
     override fun onPause() {
         super.onPause()
+    }
+    private fun addData() {
+        listStatus.add(Status(1, "2222", "hello", Calendar.getInstance().time))
+        listStatus.add(Status(1, "33", "world", Calendar.getInstance().time))
+        listStatus.add(Status(1, "3444", "I", Calendar.getInstance().time))
+        listStatus.add(Status(1, "55", "lm", Calendar.getInstance().time))
+        listStatus.add(Status(1, "777", "status", Calendar.getInstance().time))
+        listStatus.add(Status(1, "4554", "and", Calendar.getInstance().time))
+        listStatus.add(Status(1, "356", "you", Calendar.getInstance().time))
+        listStatus.add(Status(1, "476", "?", Calendar.getInstance().time))
     }
 
 }

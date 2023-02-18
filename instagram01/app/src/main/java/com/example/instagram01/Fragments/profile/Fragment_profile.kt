@@ -2,7 +2,6 @@ package com.example.instagram01.Fragments.profile
 
 import android.content.Intent
 import android.content.SharedPreferences
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.*
@@ -20,7 +19,6 @@ import com.example.instagram01.Fragments.status.Fragment_showStatus_User
 import com.example.instagram01.R
 import com.example.instagram01.activity.EditProfile_Activity
 import com.example.instagram01.activity.HomePageActivity
-import com.example.instagram01.activity.LoginActivity
 import com.example.instagram01.adapters.CustomeRvAdapter_addFriend_profile
 import com.example.instagram01.adapters.CustomerAdapter_status_profile
 import com.example.instagram01.interfaceFun.OnClickListent
@@ -28,7 +26,6 @@ import com.example.instagram01.model.ImageStaus
 import com.example.instagram01.model.Status
 import com.example.instagram01.model.User
 import com.example.instagram01.reusable_classes.DataTest
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.util.Calendar
 
 

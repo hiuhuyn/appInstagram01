@@ -1,23 +1,25 @@
 package com.example.instagram01.adapters
 
-import android.net.Uri
+import android.annotation.SuppressLint
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.widget.ViewPager2
-import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.instagram01.R
+import com.example.instagram01.activity.HomePageActivity
 import com.example.instagram01.model.*
 import com.example.instagram01.reusable_classes.DataTest
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import me.relex.circleindicator.CircleIndicator3
 import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.logging.SimpleFormatter
 
 class CustemerAdapter_status(val fragmentActivity: FragmentActivity, val listStatus: ArrayList<Status>, var fragment: Fragment): ArrayAdapter<Status>(fragmentActivity, R.layout.item_witget_status),
     Filterable {
+
 
     private var listImages = ArrayList<ImageStaus>()
     private var listLike = ArrayList<LikeStatus>()
@@ -87,6 +89,7 @@ class CustemerAdapter_status(val fragmentActivity: FragmentActivity, val listSta
     }
 
 
+    @SuppressLint("MissingInflatedId")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         createData(position)
 
@@ -156,11 +159,31 @@ class CustemerAdapter_status(val fragmentActivity: FragmentActivity, val listSta
                 // khi nhấn like
             }
 
-
         }
+        val inflater = LayoutInflater.from(context)
         img_btn_comment.setOnClickListener {
-
+            var view = inflater.inflate(R.layout.comment_sheet, null)
+            val bottomSheetDialog = BottomSheetDialog(context)
+            bottomSheetDialog.setContentView(view)
+            val listViewComments = view.findViewById<ListView>(R.id.comment_list_view)
+            val comment_button = view.findViewById<Button>(R.id.comment_button)
+            val comment_edit_text = view.findViewById<EditText>(R.id.comment_edit_text)
+            // Tạo một Adapter để hiển thị danh sách bình luận
+            val adapter = CustemerAdapter_comment(context, listComment)
+            listViewComments.adapter = adapter
+            comment_button.setOnClickListener {
+                val text = comment_edit_text.text.toString()
+                var id = 8
+                if (text.isNotEmpty()){
+                    id += 1
+                    listComment.add(CommentStatus(id, listStatus[position].IdStatus, "yutar", text, Calendar.getInstance().time ))
+                    (listViewComments.adapter as CustemerAdapter_comment).notifyDataSetChanged()
+                    comment_edit_text.text.clear()
+                }
+            }
+            bottomSheetDialog.show()
         }
+
         img_btn_menu.setOnClickListener {
 
         }

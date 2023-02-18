@@ -33,9 +33,7 @@ class CustemerAdapter_status_Search(val activity: HomePageActivity, var array:Ar
         img_avt.setImageURI(array[position].Avt)
         tv_userName.setText(array[position].UserName)
         tv_fullName.setText(array[position].FullName)
-
         btn.setVisibility(View.GONE)
-
         return view
     }
 

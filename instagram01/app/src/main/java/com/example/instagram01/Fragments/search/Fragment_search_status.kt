@@ -28,7 +28,6 @@ class Fragment_search_status : Fragment() {
 
         }
     }
-
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
